@@ -1,0 +1,6 @@
+*Complex module
+***Programmer: Ben Sehnert
+
+A small module for doing computations with complex numbers
+should implement unit testing, lint analysis, code coverage
+a user interface for demonstrations and integration testing.

@@ -7,6 +7,11 @@
 #import statement
 from Socialite import *
 
+# probably can just delete this and start from scratch
+# with a new script,
+# 
+# much has changed with this project scope/ socialite class
+
 def socialite_creator():
     '''
 prompts the user for input and plugs those values into the setter methods of the socialite class.
