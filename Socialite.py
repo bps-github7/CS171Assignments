@@ -1,30 +1,57 @@
-##Ben Sehnert---bps53@drexel.edu---12455911
-##CS172
-##Professor D. Augenblick
+#Programmer: Ben Sehnert
+#Program: Socialite class
+#software purpose: Mock social media site
+#Date: 7/30/2020
 
-##HW1 socialite class
-class Socialite:
+"""
+Module level docstring: after a short requirements list is drafted,
+we will need to re think the attributes and add helper methods.
 
-    #initializer method
-    def __init__(self, first, last, pic, web, desc, uID):
-        self._firstName = first
-        self._lastName = last
-        self._picture = pic
-        self._website = web
-        self._description = desc
-        self._userID = uID
+For now, this class contains the bare minumum data for creating a profile
+further iterations will need hashed, configurable password attribute and a mutable datatype
+attribute that tracks profile info, followers/followees, groups and events.
+"""
+
+class Socialite(object):
+    """
+Class level docstring: class for tracking account holder info
+for a small, mockup social media site.
+    """
+    version = 2.1
+
+    #for now, password cannot be set via constructor
+    def __init__(self, first, last, uID):   
+        self.first_name = first
+        self.last_name = last
+        self.user_id = uID
+        self._password = '*******'
+
+    @property
+    def password(self):
+        return self._password
+
+    @password.setter
+    def set_password(self, s):
+        print("password cannot be edited")
+        return 1
 
     def __str__(self):
-        return "name: {} {}\nPicture: {}\nWebsite: {}\nDescription: {}\nUserID: {}".format(self._firstName, self._lastName, self._picture, self._website, self._description, self._userID)
+        return "name: {} {}\nUserID: {}\npassword: {}"\
+        .format(self.first_name, self.last_name, self.user_id, self._password)
 
+
+def main():
+    '''Simple unit test for Socialite methods'''
+    test = Socialite('Ben', 'Sehnert', 12345)
+    print(test.__str__())
+    print("\nDisplaying current userID (get method testing):")
+    print(test.user_id)
+    print("\nGenerating new userID (set method testing):")
+    test.user_id = 98765
+    print(test.__str__())
+    # Not working as expected. 
+    # test.password = 'bilbo baggins'
+
+#Intiailize testing..
 if __name__ == "__main__":
-    test = Socialite('Ben', 'Sehnert', 'https://no.com', 'apricot.com', 'a picture of me eating a grapefruit', 12345)
-
-    print(test.__str__())
-    print("\n\n")
-    print(test._description)
-    print("\n\n")
-
-    test._description = "no frogs allowed in this outhouse!"
-
-    print(test.__str__())
+    main()
