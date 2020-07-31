@@ -14,11 +14,11 @@ class Complex:
     version = 2.1
 
     def __init__(self, real, imaginary = 0.0):
-        self.real = round(real,4)
-        self.imaginary = round(imaginary,4)
+        self.real = real
+        self.imaginary = imaginary
 
     def __str__(self):
-        real, img = self.real, self.imaginary
+        real, img = round(self.real,4), round(self.imaginary,4)
         return '({})+{}i'.format(real, img)\
         if self.real < 0 else '{}+({})i'.format(real, img)\
         if self.imaginary < 0 else '({})+({})i'.format(real, img)\

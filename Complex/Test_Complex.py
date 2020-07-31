@@ -60,6 +60,6 @@ def main():
     print("cubed: ",cube())
 
 if __name__ == '__main__':
-    # unittest.main()
-    main()
+    unittest.main()
+    # main()
 

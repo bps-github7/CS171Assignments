@@ -1,6 +1,8 @@
 *Complex module
 ***Programmer: Ben Sehnert
 
-A small module for doing computations with complex numbers
-should implement unit testing, lint analysis, code coverage
-a user interface for demonstrations and integration testing.
+on the command line, you can either run the script with default values (real = 2.0, imaginary = 3.0, k = 10)
+or pass in arguments via the command line
+
+$ python equality 3.0 4.0 12
+
