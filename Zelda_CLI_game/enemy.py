@@ -10,14 +10,14 @@ which provides the structure and documentation for all in-game objects.
 
 import abc
 
-class enemy(metaclass = abc.ABCMeta, object):
+class Enemy(metaclass = abc.ABCMeta, object):
     '''Class Level Docstring: creates signitures/ abstract methods
     for init (constructor), __str__ (string repr.) and all helper
     methods for gameplay.
 
     NOTE: getter methods are retained from version 1, despite
     this class adhering to the Descriptor protocol/ being a 
-    new style classe.
+    new style class.
     
     This is done in order to facilitate documentation. 
     When users implement the enemy class they will understand 

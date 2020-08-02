@@ -1,48 +1,98 @@
-##Ben Sehnert
+'''
+Ben Sehnert
 ##8/15/2018
-##cs 172 chuchu class
+##CS 172 Bokoblin class
 
-#imports enemy ABC
-from enemy import *
-class Chuchu:
-    def __init__(self,name):#initializes instance of the class chuchu
-        self.__name = name;
-        self.__health = 50;
-        self.__defense_Mode = False;
-    #string method
+Module Level Docstring
+
+'''
+#import ABC enemy
+from Enemy import Enemy
+
+class Bokoblin:
+    '''Class Level Docstring:
+
+    '''
+    version = 2.0
+
+
+    def __init__(self,name):
+        self.__name = name
+        self.__health = 120
+        self.__defense_Mode = True
+
     def __str__(self):
-        return "a chuchu named {} approaches".format(self.__name)
-    #accessor methods
-    def getHealth(self):
-        return self.__health;
-    def getName(self):
-        return self.__name;    
-    def getDesc(self):
-        return "A colorful & gelatinous monster.\nDefeat it to collect its gelatinous elixer ingredients"
-    #Attack methods
+        '''
+        
+        '''
+        return "a bokoblin named {} is partying nearby".format(self.__name)
+    
+    def get_health(self):
+        '''
+
+        '''
+        return self.__health
+    
+    def get_name(self):
+        '''
+
+        '''
+        return self.__name
+    
+    def get_desc(self):
+        '''
+        
+        '''
+        return "A meager Bokoblin with a sword and shield.\n\
+            You can overpower it if you are sneaky"
+
     def basic_Attack(self, enemy):
-        self.__defense_mode = False;#cant defend while using basic attack
-        enemy.do_Damage(5);
+        '''
+    #what is defense mode?
+        '''
+        self.__defense_mode = True
+        enemy.do_Damage(25)
+    
     def basic_Name(self):
-        return "Wap!";
+        '''
+
+        '''
+        return "slice"
+    
     def defense_Attack(self, enemy):
-        self.__defense_Mode = False;#cant defend    
+        '''
+        
+        '''
+        self.__defense_Mode = True
+    
     def defense_Name(self):
-        return "rolls away in defense!";
-    def special_Attack(self, enemy):
-        self.__defense_mode = False;
-        enemy.do_Damage(12);    
+        '''
+        
+        '''
+        return "jump!"
+        enemy.do_Damage(40)
+
     def special_Name(self):
-        return "pounce strike";
-    #damage mechanism
+        '''
+        
+        '''
+        return "poison bite"
+
     def do_Damage(self, damage):
+        '''
+        
+        '''
         if(self.__defense_Mode == True):
-            self.__health = self.__health-(damage//2);
+            self.__health = self.__health-(damage//2)
         else:
-            self.__health = self.__health - damage;
-    #resets health    
+            self.__health = self.__health - damage
+    
+    #reset health to max
     def resetHealth(self):
-        self.__health = 50;
-#if name == main thing
+        '''
+        
+        '''
+        self.__health = 120
+
 if __name__ == "__main__":
-    print("Running in standby mode");
+    print("Running in standby mode")

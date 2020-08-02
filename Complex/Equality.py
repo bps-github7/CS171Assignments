@@ -1,14 +1,12 @@
-### Programmer: Ben Sehnert
-### Program: Equality test (CLI test for complex numbers)
-### Date: 7/29/18
-### Software: Complex Number Calculator
-
 """
-Equality.py script
+Programmer: Ben Sehnert
+Program: Equality test (CLI test for complex numbers)
+Date: 7/29/18
+Software: Complex Number Calculator
 
 takes 3 arguments, first two floats and last an integer
 
-caluclates a summation using Complex numbers:
+Calculated sum:
 
 sigma (0,k) sum=0, num=0, n+1 : sum += Complex(2.0, 3.0) ^ num
 where the real and imaginary arguments to Complex constructor 

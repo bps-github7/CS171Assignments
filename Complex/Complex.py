@@ -1,9 +1,10 @@
-### Programmer: Ben Sehnert
-### Program: Complex number class
-### Date: 7/30/2020
-### Software: Complex Number class
-
 '''
+Programmer: Ben Sehnert
+Program: Complex number class
+Date: 7/30/2020
+Software: Complex Number class
+
+
 Module Level Docstring: Implements a Complex number class
 with overridden magic methods for addition, subtraction,
 multiplication and division.

@@ -75,6 +75,9 @@ while loop:
         print("there is no such thing as a",count,"quantity of monsters!\nTry again.\n\n\n")
 
 #Randomly populates monster_list with selection of monsters named after rappers and etc characters
+
+#Gotta be a better way of using the constructors (ie use random name from array and unpack arg) than this!!!
+
 monster_list = []
 if count == 1:
     ran = random.randint(1,3)
