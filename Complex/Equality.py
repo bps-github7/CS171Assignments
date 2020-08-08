@@ -41,16 +41,24 @@ def equality(real = 2.0, imaginary = 3.0, k = 10):
     return True if str(summation(c,k)) == str(quotient(c,k)) else False
 
 def main():
-    #compound ternary was getting hard to debug and configure
+    #if only the script executable was invoked, use only default arguments
     if len(sys.argv) == 1:
         print(equality())
         return 1
     try:
-        real, imaginary, k = float(sys.argv[1]), float(sys.argv[2]), int(sys.argv[3])
+        real, imaginary, k = float(sys.argv[1]),
+        float(sys.argv[2]), int(sys.argv[3])
     except IndexError:
-        print("must pass in all three arguments or none.")
-        return 0
-    # Checks if these variables/ arguments are defined
+        #copes with various amounts of variables provided
+        if len(sys.argv) == 2:
+            real = float(sys.argv[1])
+        elif len(sys.argv) == 3:
+            real, imaginary = float(sys.argv[1]), float(sys.argv[2])
+        # Cautionary measure
+        elif len(sys.argv) == 4:
+            real, imaginary, k = float(sys.argv[1]),
+            float(sys.argv[2]), int(sys.argv[3])
+    # Another precaution
     if (real, imaginary, k):
         print(equality(real, imaginary, k))
         return 1

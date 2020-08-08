@@ -1,8 +1,86 @@
 *Complex module
 ***Programmer: Ben Sehnert
 
-on the command line, you can either run the script with default values (real = 2.0, imaginary = 3.0, k = 10)
+
+1) Equality script
+2) Complex Class
+3) Test_Complex unit test
+
+~1.1 
+
+on the command line, you can either run the script with default values 
+
+$ python equality
+
+Where real = 2.0, imaginary = 3.0 and k = 10.
+
 or pass in arguments via the command line
 
 $ python equality 3.0 4.0 12
 
+1.2 Note that the script can handle less then all the default arguments over ridden
+However, you must provide the arguments in the correct order.
+
+which is: 
+
+$ script-name <real-part> <imaginary-part> <constant term>
+
+~2.1 Complex Class
+
+A class used to prototype the Complex Object
+
+2.2 Constructor: Complex(r, i)
+Both arguments are required: real and imaginary part.
+
+2.3 String representation:
+-Float values are rounded to a maximum five decimals of precision.
+-Negative terms will be surrounded by parentheses for clarity.
+
+2.4 Magic Methods/ Operator Overloading:
+-Binary Operators
+    -__add__
+    -__sub__
+    -__mul__
+    -__truediv__
+    -__pow__
+These implement the algebra to facilitate Complex number arthmetic.
+Assuming both operands in the binary operation are Complex objects,
+these operations will be invoked with python's standard arthmetic operators.
+
+the exception to this rule is that __pow__ can be used with a constant term 
+in order to facilitate squaring, cubing, etc: 
+Complex(2.0, 3.0) ** 2, Complex(2.0, 3.0) ** 3.
+
+3.0 Unit testing.
+
+There are two methods for testing the Complex module/class:
+-Standard unit testing w/ Python's built in unittest module
+-Visual test for manually confirming the accuracy/precision of the different operations.
+
+3.1 Configuratin alternating between these methods requires a small bit of configuration
+within the test script. Simply open the script, scroll to the bottom
+at the very bottom, you will find two function calls like this:
+
+if __name__ == '__main__':
+    unittest.main()
+    # main()
+
+Currently, the unittest.main() function is enabled, and the visual one is disabled.
+to enable visual testing- comment out the line `unittesting.main()` and remove the comment from the following line.
+like so:
+
+if __name__ == '__main__':
+    #unittest.main()
+    main()
+
+3.2 testing:
+
+by invoking the script with either of these configurations, you will recieve different feedback about the outcomes of the tests
+
+$ python Test_Complex(.py //if using windows)
+
+unittest will give you precise confirmation that the tests succeeded and failed,including how long the operations took to complete.
+
+Visual tests provide a more customizable, manual view of the results.
+You could for example, see what happens when you raise a very large complex number to the power of another very large complex number.
+These visual tests will tell you exact values, and thus are more descriptive regarding the results, while also less quantitative.
