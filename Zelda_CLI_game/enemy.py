@@ -10,7 +10,7 @@ which provides the structure and documentation for all in-game objects.
 
 import abc
 
-class Enemy(metaclass = abc.ABCMeta, object):
+class Enemy(metaclass = abc.ABCMeta):
     '''Class Level Docstring: creates signitures/ abstract methods
     for init (constructor), __str__ (string repr.) and all helper
     methods for gameplay.

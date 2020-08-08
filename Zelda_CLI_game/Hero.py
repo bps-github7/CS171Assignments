@@ -24,10 +24,12 @@ class Hero:
     
     def __str__(self):
         '''
+    Returns all properties attached to the hero
+        '''
+        return "Health: {} / 200\n\
+        Elixers: {} / 6\n\
+        Arrows: {} / 10".format(self.__health, self.__elixer, self.__arrows)  
 
-        '''        
-        return "a brave young hylian clad in green \nsome know him as link, some call him {}".format(self.__name)
-    
     def getHealth(self):
         '''
 
