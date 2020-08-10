@@ -9,7 +9,9 @@ which provides the structure and documentation for all in-game objects.
 '''
 
 import abc
+from abc import ABCMeta
 
+#cant figure out how to inherit from metaclass = ABCe
 class Enemy(metaclass = abc.ABCMeta):
     '''Class Level Docstring: creates signitures/ abstract methods
     for init (constructor), __str__ (string repr.) and all helper
@@ -38,13 +40,13 @@ class Enemy(metaclass = abc.ABCMeta):
 
     @property
     @abc.abstractmethod
-    def getName(self):
+    def get_name(self):
         '''Returns the enemy name.'''
         return NotImplemented
     
     @property
     @abc.abstractmethod
-    def getDescription(self):
+    def get_description(self):
         '''Returns a short message describing
     the enemy and providing any nessecary information.
         '''
@@ -52,14 +54,14 @@ class Enemy(metaclass = abc.ABCMeta):
     
     @property
     @abc.abstractmethod
-    def getHealth(self):
+    def get_health(self):
         '''An enemy with 0 health is defeated.'''
         return NotImplemented
     
     #gamified versions of setters/mutator methods
 
     @abc.abstractmethod
-    def doDamage(self, damage):
+    def do_damage(self, damage):
         '''Positive numeric argument does damage,
         and negative numeric argument heals enemy.'''
         return NotImplemented
@@ -102,6 +104,6 @@ class Enemy(metaclass = abc.ABCMeta):
         return NotImplemented
     
     @abc.abstractmethod
-    def specialName(self):
+    def special_name(self):
         '''Returns name of special attack,'''
         return NotImplemented
