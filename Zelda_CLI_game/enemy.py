@@ -9,10 +9,9 @@ which provides the structure and documentation for all in-game objects.
 '''
 
 import abc
-from abc import ABCMeta
 
 #cant figure out how to inherit from metaclass = ABCe
-class Enemy(object, metaclass = abc.ABCMeta):
+class Enemy(metaclass = abc.ABCMeta):
     '''Class Level Docstring: creates signitures/ abstract methods
     for init (constructor), __str__ (string repr.) and all helper
     methods for gameplay.
@@ -28,7 +27,6 @@ class Enemy(object, metaclass = abc.ABCMeta):
 
     version = 2.0
 
-    @abc._abc_init
     def __init__(self):
         '''Construct enemy by passing in name, desc & health as args.'''
         pass

@@ -13,7 +13,7 @@ class Hero(Enemy):
     '''Class Level Docstring: Hero Object has six attributes,
     most of which are nessecary for gameplay mechanisms.
 
-    name is purely descriptive (no impact on game implementation details)
+    Name is purely descriptive (no impact on game implementation details)
     Therefore, name is the only mutable value, able to be set via constructor.
     '''
 
@@ -26,21 +26,24 @@ class Hero(Enemy):
         self.__elixers = 5
         self.__arrows = 10
     
-    def __repr__(self):
+    def __str__(self):
         '''Returns Hero attributes. 
     (health and defense_mode are implementation details)'''
         return "Health: {} / 200\n\
-    Bombs: {} / 20\n\
-    Elixers: {} / 6\n\
-    Arrows: {} / 10".format(self.__health, self.__bombs, self.__elixer, self.__arrows)
+    \r\rBombs: {} / 20\n\
+    \r\rElixers: {} / 6\n\
+    \r\rArrows: {} / 10".format(self.__health, self.__bombs, self.__elixer, self.__arrows)
 
+    #abstract methods we need to overwrite
+    def get_name(self):
+        return self._name
     
-    def __str__(self):
+    def get_description(self):
         '''Returns Hero description'''
         return "{}, a young warrior, clad in green".format(self.__name)
     
     
-    def health_bar(self):
+    def get_health(self):
         '''Returns Hero health points vs. max health points.'''
         return "{}/200".format(self.__health)
     
@@ -143,3 +146,5 @@ class Hero(Enemy):
 
 if __name__ == "__main__":
     print("Running in standby mode")
+    test = Hero('linko')
+    print(test)
