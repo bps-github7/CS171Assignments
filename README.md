@@ -10,6 +10,6 @@ TODO:
 
 3) implement a userinterface for each of these projects, maybe a website to display all of them on different pages
 4) need to improve scripting in most files, make them all more feature enriched
-5) get all the class files compliant with the descriptor protocol (no need for get and set methods, assuming the class inherits from object)
+5) get all the class files compliant with the descriptor protocol- no need for get and set methods
 
 next you will want to do this for java and CS671 (need to make new repo for that one)

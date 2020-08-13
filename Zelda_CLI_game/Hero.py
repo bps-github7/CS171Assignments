@@ -125,15 +125,11 @@ class Hero(Enemy):
         return "{} / 5".format(self.__elixers)
 
     def do_damage(self, damage):
-        '''
-    subtracts damage argument from Hero health.
-    If Defense mode is true, cuts value of damage argument in half.
-        '''
-        if(self.__defense_Mode):
+        if self.__defense_mode:
             self.__health -= damage // 2
         else:
             self.__health -= damage
-
+    
     def reset_health(self):
         '''Sets the health points of Hero to maximum.'''
         self.__health = 200

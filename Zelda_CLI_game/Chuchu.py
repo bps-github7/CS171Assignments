@@ -78,16 +78,12 @@ class Bokoblin:
         '''
         return "poison bite"
 
-    def do_Damage(self, damage):
-        '''
-        
-        '''
-        if(self.__defense_Mode == True):
-            self.__health = self.__health-(damage//2)
+    def do_damage(self, damage):
+        if self.__defense_mode:
+            self.__health -= damage // 2
         else:
-            self.__health = self.__health - damage
+            self.__health -= damage
     
-    #reset health to max
     def resetHealth(self):
         '''
         
