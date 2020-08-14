@@ -1,12 +1,12 @@
 '''
+Module Level Docstring:
 Ben Sehnert
-##8/15/2018
-##CS 172 Bokoblin class
+Chuchu class for Zelda CLI Mini-game
+8/15/2018
 
 Module Level Docstring
 
 '''
-#import ABC enemy
 from Enemy import Enemy
 
 class Chuchu:
