@@ -43,33 +43,5 @@ class TestHero(unittest.TestCase):
     def test_special_name(self):
         self.assertEqual(self.m.special_name(), "Used a bomb")
 
-    def test_use_arrow(self):
-        self.assertEqual()
-
-    def test_arrow_name(self):
-        self.assertEqual()
-
-    def test_arrow_count(self):
-        self.assertEqual()
-
-    def test_elixer(self):
-        self.assertEqual()
-
-    def test_elixer_name(self):
-        self.assertEqual()
-
-    def test_do_damage(self):
-        self.assertEqual()
-
-    def test_reset_health(self):
-        self.assertEqual()
-    
-    def test_reset_ammo(self):
-        self.assertEqual()
-
-#using Global variables to reduce code redundancy
-m, n = Hero(), Bokoblin("Gary")
-
 if __name__ == "__main__":
-    # visual_main()
     unittest.main()
