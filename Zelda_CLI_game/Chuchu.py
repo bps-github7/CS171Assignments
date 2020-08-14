@@ -9,86 +9,69 @@ Module Level Docstring
 #import ABC enemy
 from Enemy import Enemy
 
-class Bokoblin:
+class Chuchu:
     '''Class Level Docstring:
-
+    Creates the ChuChu monster,
+    the most convenient and common enemy.
     '''
     version = 2.0
 
-
     def __init__(self,name):
-        self.__name = name
-        self.__health = 120
-        self.__defense_Mode = True
+        self.name = name
+        self.__health = 80
+        self.defense_mode = True
 
     def __str__(self):
-        '''
-        
-        '''
-        return "a bokoblin named {} is partying nearby".format(self.__name)
+        return "a Chuchu named {} is chuggin' away nearby".format(self.__name)
     
     def get_health(self):
-        '''
-
-        '''
-        return self.__health
+        return "{} / 80".format(self.__health)
     
     def get_name(self):
-        '''
-
-        '''
-        return self.__name
+        return self.name
     
-    def get_desc(self):
-        '''
-        
-        '''
-        return "A meager Bokoblin with a sword and shield.\n\
-            You can overpower it if you are sneaky"
+    def get_description(self):
+        return "A gelatinous, colorful Chu lurches forward"
 
-    def basic_Attack(self, enemy):
-        '''
-    #what is defense mode?
-        '''
-        self.__defense_mode = True
-        enemy.do_Damage(25)
+    def basic_attack(self, enemy):
+        self.defense_mode = False
+        enemy.do_damage(7)
     
-    def basic_Name(self):
+    def basic_name(self):
+        return "pounce"
+    
+    def defense_attack(self, enemy):
+        '''Does not do anything with defense mode
+        because te Chuchu is weakest enemy.
         '''
+        enemy.do_damage(5)
 
-        '''
-        return "slice"
-    
-    def defense_Attack(self, enemy):
-        '''
-        
-        '''
-        self.__defense_Mode = True
-    
-    def defense_Name(self):
-        '''
-        
-        '''
-        return "jump!"
-        enemy.do_Damage(40)
+    def defense_name(self):
+        return "lurch"
 
-    def special_Name(self):
-        '''
-        
-        '''
-        return "poison bite"
+    def special_attack(self, enemy):
+        '''Sets defense to false and does decent amount of damage'''
+        self.defense_mode = False
+        enemy.do_damage(25)
+
+    def special_name(self):
+        return "dangerously high bounce!"
 
     def do_damage(self, damage):
-        if self.__defense_mode:
+        if self.defense_mode:
             self.__health -= damage // 2
         else:
             self.__health -= damage
     
-    def resetHealth(self):
-        '''
-        
-        '''
-        self.__health = 120
+    def reset_health(self):
+        self.__health = 80
 
 if __name__ == "__main__":
     print("Running in standby mode")
+    from Bokoblin import Bokoblin
+    C = Chuchu('Bruce')
+    B = Bokoblin('Larry')
+    C.special_attack(B)
+    C.defense_attack(B)
+    C.basic_attack(B)
+    print(B.get_health())

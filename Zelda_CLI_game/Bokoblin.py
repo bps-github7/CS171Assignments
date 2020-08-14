@@ -17,70 +17,59 @@ class Bokoblin:
 
 
     def __init__(self,name):
-        self.__name = name
+        self.name = name
         self.__health = 120
-        self.__defense_Mode = True
+        self.defense_mode = True
 
     def __str__(self):
-        '''
-        
-        '''
-        return "a bokoblin named {} is partying nearby".format(self.__name)
+        return "a bokoblin named {} is partying nearby".format(self.name)
     
     def get_health(self):
-        '''
-
-        '''
         return self.__health
     
     def get_name(self):
-        '''
-
-        '''
-        return self.__name
+        return self.name
     
-    def get_desc(self):
-        '''
-        
-        '''
+    def get_description(self):
         return "A meager Bokoblin with a sword and shield.\n\
             You can overpower it if you are sneaky"
 
-    def basic_Attack(self, enemy):
-        '''
-    #what is defense mode?
-        '''
-        self.__defense_mode = True
-        enemy.do_Damage(25)
+    def basic_attack(self, enemy):
+        self.defense_mode = True
+        enemy.do_damage(25)
     
-    def basic_Name(self):
-        '''
-
-        '''
+    def basic_name(self):
         return "slice"
     
-    def defense_Attack(self, enemy):
-        '''
-        
-        '''
+    def defense_attack(self, enemy):
         self.defense_mode = True
-        enemy.do_Damage(40)
-    
-    def defense_Name(self):
-        return "jump!"
+        enemy.do_damage(30)
+
+    def defense_name(self):
+        return "jump smash!"
         
 
-    def special_Name(self):
+    def special_attack(self, enemy):
+        self.defense_mode = False
+        enemy.do_damage(60)
+
+    def special_name(self):
         return "poison bite"
 
     def do_damage(self, damage):
-        if self.__defense_mode:
+        if self.defense_mode:
             self.__health -= damage // 2
         else:
             self.__health -= damage
     
-    def resetHealth(self):
+    def reset_health(self):
         self.__health = 120
 
 if __name__ == "__main__":
+    from Moblin import Moblin
     print("Running in standby mode")
+    B = Bokoblin('Dutch')
+    M = Moblin('Gary')
+    M.special_attack(B)
+    M.basic_attack(B)
+    print(B.get_health())

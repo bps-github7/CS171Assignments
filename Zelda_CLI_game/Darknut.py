@@ -40,8 +40,7 @@ class Darknut(Enemy):
         return "Darknut clad in heavy duty armor\nHe towers over you."
 
     def basic_attack(self, enemy):
-        '''consistent relative to every other enemy attack.  
-        '''
+        '''consistent relative to every other enemy attack.'''
         self.defense_mode = True
         enemy.do_damage(25)
     
@@ -86,10 +85,8 @@ class Darknut(Enemy):
     
     def reset_health(self):
         '''
-   <//////////\\\\\\>
-   </////////\\\\\\\>
-   <<////////\\\\\\\>>
-   <//////////\\\\\\\> 
+   <///////\\\\\\>
+   <//////\\\\\\\>
         '''
         self.__health = 500
 

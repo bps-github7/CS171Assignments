@@ -41,7 +41,7 @@ Class Docstring:
         sets d_mode false'''
         #cant defend while using basic attack
         self.defense_mode = False
-        enemy.do_damage(15)
+        enemy.do_damage(25)
     
     def basic_name(self):
         return "Kick"
