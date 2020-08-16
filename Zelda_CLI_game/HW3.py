@@ -56,10 +56,6 @@ if the user didnt enter anything in prompt.
     player_name = input("Enter your name(default = Link): ")
     return Hero("link") if player_name in (""," ","\n", " \n") else Hero(player_name)
 
-def create_opponent():
-    monsters = ["Chuchu","Bokoblin","Moblin","Darknut"]
-    names = ["Gary", "Fred", "Joyce", "Franklin", "Bruce", "Bstaltkja", "Tristeece", "Pinecone", "Frued", "Kongjawn", ]
-    return eval("{}('{}')".format(random.choice(monsters),random.choice(names)))
 
 def triforce():
     print(r"""
@@ -88,36 +84,6 @@ def  game_intro():
     print("You look closely and realize it be monsters...")
     return 0
 
-#dont like this selection method- should improve on this..
-def get_monster_count():
-    '''
-Not sure how nescesaryr this step is..
-is there a better way to faciliate this
-/change the gameplay mechanic- 
-
-a) make the story more complex- player can go 
-different paths- choose which enemies to fight
-b) freeforall- player fights enemies non stop until they die.
-c) something else...
-    '''
-    while True:
-        count = input("How many do you wish to fight?\n\n")
-        try:
-            count = int(count)
-            if int(count) > 5:
-                print("That sure is a lot of monsters.\n\
-                \r\rYou will fight five monsters and then\n\
-                \r\rdecide if you want to keep going.")
-                count = 5
-                break
-            elif int(count) < 1:
-                print("you cannot fight 0 or negative monsters.\n\
-                    \r\rThey attack angerily now!")
-            else: break
-        except ValueError:
-            print("there is no such thing as a",count,
-            "quantity of monsters!\nTry again.\n\n\n")
-    return count
 
 #get_monster_count is shoddy but effective for now.
 def main():
@@ -129,9 +95,23 @@ def main():
     print("player name: {}".format(link.name))
     print("Opponent name: {}".format(opponent.name))
     game_intro()
-    print(get_monster_count())
     return 0
 
+def monster_hunter():
+    '''
+main subroutine for gameplay
+
+hero can choose to go behind different
+paths and face different monsters, getting
+occasional rewards.
+
+maybe consider using a Object Oriented Approach for this?
+
+    '''
+    south = [[],[],[],[],[],[],[],[],[]]
+    north = [[],[],[],[],[],[],[],[],[]]
+    east = [[],[],[],[],[],[],[],[],[]]
+    west = [[],[],[],[],[],[],[],[],[]]
 
 
 main()
