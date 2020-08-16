@@ -56,10 +56,6 @@ if the user didnt enter anything in prompt.
     player_name = input("Enter your name(default = Link): ")
     return Hero("link") if player_name in (""," ","\n", " \n") else Hero(player_name)
 
-def create_opponent():
-    monsters = ["Chuchu","Bokoblin","Moblin","Darknut"]
-    names = ["Gary", "Fred", "Joyce", "Franklin", "Bruce", "Bstaltkja", "Tristeece", "Pinecone", "Frued", "Kongjawn", ]
-    return eval("{}('{}')".format(random.choice(monsters),random.choice(names)))
 
 def triforce():
     print(r"""
