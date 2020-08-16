@@ -14,16 +14,20 @@ class TestHero(unittest.TestCase):
     
     
     def setUp(self):
-        self.m = Hero("SkonadloneS")
-        self.n = Bokoblin("Gary")
+        self.n = Hero("SkonadloneS")
+        self.m = Bokoblin("Gary")
 
     def tearDown(self):
         del self.m, self.n
 
     #Hero Attack testing- basic, defense, special
-    def test_basic_attack(self):
+    def test_basic_attack(self, m = self.m, n = self.n):
+        '''Tests opponent health to see if it was lowered.'''
         m.basic_attack(n)
-        self.assertEqual()
+        self.assertEqual(n.health(), True)
+        n.defense_mode = False
+        m.basic_attack(n)
+        self.assertEqual(n.health(), 180)
 
     def test_defense_attack(self):
         m.defense_attack(n)
@@ -44,4 +48,5 @@ class TestHero(unittest.TestCase):
         self.assertEqual(self.m.special_name(), "Used a bomb")
 
 if __name__ == "__main__":
+    
     unittest.main()

@@ -24,8 +24,7 @@ class Darknut(Enemy):
         self.defense_mode = True
 
     def __str__(self):
-        return "a Darknut named {} attacks you with\n\
-        \r\r{} health points ".format(self.name, self.__health)
+        return "a Darknut named {} is attacking ".format(self.name)
     
     def get_health(self):
         '''returns health / total health'''
@@ -47,7 +46,7 @@ class Darknut(Enemy):
     def basic_name(self):
         '''returns name of basic attack
         '''
-        return "slice"
+        return "JUDO CHOP"
     
     def defense_attack(self, enemy):
         '''deals considerable damage. Always makes d_mode true     
@@ -57,37 +56,27 @@ class Darknut(Enemy):
 
 
     def defense_name(self):
-        '''
-    Returns defense attack name
-        '''
-        return "jump!"
+        return "Supa Dupa Dodge"
 
     def special_attack(self, enemy):
-        ''' ;@**&
-        /....()'''
-        print("left...")
-        enemy.do_damage(20)
-        print("...right")
-        enemy.do_damage(12)
-        print("and... ...again.")
-        enemy.do_damage(13)
+        if self.defense_mode:
+            self.__health -= 20
+            enemy.do_damage(70)
+        else:
+            self.__health -= 50
+            enemy.do_damage(100)
     
     def special_name(self):
         ''' '''
         return "haymaker"
 
     def do_damage(self, damage):
-        '''    '''
         if self.defense_mode:
             self.__health -= damage // 2
         else:
             self.__health -= damage
     
     def reset_health(self):
-        '''
-   <///////\\\\\\>
-   <//////\\\\\\\>
-        '''
         self.__health = 500
 
 if __name__ == "__main__":

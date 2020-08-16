@@ -22,7 +22,7 @@ Class Docstring:
         self.defense_mode = True
 
     def __str__(self):
-        return "a moblin named {} is attacking".format(self.name)
+        return "a Moblin named {} is attacking".format(self.name)
 
     
     def get_health(self):#returns health
@@ -60,11 +60,9 @@ Class Docstring:
         '''returns name of special attack'''
         return "belch-roar-jab-strike!"
     
-
-
     def do_damage(self, damage):    
         if self.defense_mode:
-            self.__health -= damage // 2
+            return True
         else:
             self.__health -= damage
     

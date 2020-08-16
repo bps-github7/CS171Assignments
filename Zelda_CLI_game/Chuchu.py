@@ -22,7 +22,7 @@ class Chuchu:
         self.defense_mode = True
 
     def __str__(self):
-        return "a Chuchu named {} is chuggin' away nearby".format(self.__name)
+        return "a Chuchu named {} is chuggin' away nearby".format(self.name)
     
     def get_health(self):
         return "{} / 80".format(self.__health)
@@ -35,7 +35,7 @@ class Chuchu:
 
     def basic_attack(self, enemy):
         self.defense_mode = False
-        enemy.do_damage(7)
+        enemy.do_damage(12)
     
     def basic_name(self):
         return "pounce"
@@ -50,7 +50,6 @@ class Chuchu:
         return "lurch"
 
     def special_attack(self, enemy):
-        '''Sets defense to false and does decent amount of damage'''
         self.defense_mode = False
         enemy.do_damage(25)
 

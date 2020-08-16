@@ -121,8 +121,9 @@ class Hero(Enemy):
         return "{} / 5".format(self.elixers)
 
     def do_damage(self, damage):
+        '''Blocks attack if defense mode is true'''
         if self.defense_mode:
-            self.__health -= damage // 2
+            return True
         else:
             self.__health -= damage
     
@@ -131,7 +132,7 @@ class Hero(Enemy):
         self.__health = 200
 
     def reset_ammo(self):
-        '''Sets all the ammunititions to the max/initial value'''
+        '''Sets all the munititions to the max/initial value'''
         self.arrows = 10
         self.elixers = 5
 

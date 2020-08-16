@@ -22,7 +22,7 @@ class Bokoblin:
         self.defense_mode = True
 
     def __str__(self):
-        return "a bokoblin named {} is partying nearby".format(self.name)
+        return "a Bokoblin named {} is partying nearby".format(self.name)
     
     def get_health(self):
         return self.__health
@@ -35,7 +35,7 @@ class Bokoblin:
             You can overpower it if you are sneaky"
 
     def basic_attack(self, enemy):
-        self.defense_mode = True
+        self.defense_mode = False
         enemy.do_damage(25)
     
     def basic_name(self):
@@ -51,14 +51,15 @@ class Bokoblin:
 
     def special_attack(self, enemy):
         self.defense_mode = False
-        enemy.do_damage(60)
+        enemy.do_damage(50)
 
     def special_name(self):
         return "poison bite"
 
     def do_damage(self, damage):
+        '''blocks opponent attack if defense mode is true'''
         if self.defense_mode:
-            self.__health -= damage // 2
+            return True
         else:
             self.__health -= damage
     
