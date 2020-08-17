@@ -142,26 +142,72 @@ def get_room_desc():
     ])
 
 class Room:
-    def __init__(self):
+    '''Class Level Docstring: 
+    An entirely randomly generated room within the dungeon.
+    it contains a room name, description, enemy, and occasional reward
+    name can be optionally passed in for 
+    customizable dungeon exploration experiences.
+    '''
+    
+    def __init__(self, name = get_room_name):
         self.name = get_room_name()
         self.description = get_room_desc()
         self.enemy = create_opponent()
         self.reward = get_reward()
     
     def __str__(self):
-        return "Room name: {}\n\
-        \r\rdescription: {}\n\
-        \r\rEnemy: {}\n\
-        \r\rReward: {}".format(self.name, self.description, self.enemy, self.reward)
+        '''I feel like this is redundant-
+        Objects default print mode is using repr, than str
+        check docs to clarify
+        '''
+        return self.__repr__()
     
     def __repr__(self):
         return {"name": self.name, "description" : self.description,
         "enemy": self.enemy, "reward" : self.reward}
 
 class Dungeon:
+    '''Class level docstring:
+    
+    '''
     def __init__(self):
+        self.start = Room()
         self.count = 0
+        self.linked_room = {
+            "north" : Room(),
+            "south" : Room(),
+            "east" : Room(),
+            "west" : Room()
+            }
+
+    def link_room(self, direction, room_to_link):
+        '''Append room_to_link to self.linked_room'''
+        self.linked_room[direction] = room_to_link
+
+    @classmethod
+    def from_travel(cls, direction):
+        '''Alternative constructor- returns
+        a new dungeon object to simulate moving
+        from room to room in the dungeon.'''
         
+
+    def travel(self):
+        while True:
+            print("Which room would you like to travel to?")
+            for i in self.linked_room.keys():
+                print(i)
+            direction = input().lower() 
+            if direction not in ("north","west","east","west"):
+                print("not a valid choice! try again")
+                continue
+            break
+        print("You chose to move",direction)
+        return Dungeon()
+
+def other_test():            
+    D = Dungeon()
+    still_here = D.travel()
+    print(still_here.start)
 
 def test():
     D = Room()
@@ -170,3 +216,4 @@ def test():
         skone = D.__repr__()
         print(skone[resp])
 
+other_test()
