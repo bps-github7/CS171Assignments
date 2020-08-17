@@ -25,7 +25,7 @@ class Bokoblin:
         return "a Bokoblin named {} is partying nearby".format(self.name)
     
     def get_health(self):
-        return self.__health
+        return "{} / 120".format(self.__health)
     
     def get_name(self):
         return self.name
@@ -59,7 +59,7 @@ class Bokoblin:
     def do_damage(self, damage):
         '''blocks opponent attack if defense mode is true'''
         if self.defense_mode:
-            return True
+                self.__health -= damage // 2
         else:
             self.__health -= damage
     

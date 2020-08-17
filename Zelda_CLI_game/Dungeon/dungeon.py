@@ -5,6 +5,7 @@ from Darknut import Darknut
 import random
 
 def create_opponent():
+    '''Creates a random monster with a random name'''
     monsters = ["Chuchu","Bokoblin","Moblin","Darknut"]
     names = ["Gary", "Fred", "Joyce", "Franklin", "Bruce", "Bstaltkja",
     "Tristeece", "Pinecone", "Frued", "Kongjawn", "Stanely", "Alfie",
@@ -12,17 +13,22 @@ def create_opponent():
     "Tommy Carcetti", "Jon Bogotti", "Al Capone", "Michael Gray", "Polly Gray",
     "Skeleton Farce", "Strong wimsical Biscuit", "Spaggeti Monster",
     "QuasiHempt Skolondious", "Pastry Wimpleton", "Casey Busketon",
-    "Railyway Eddie", "Eggplant Parmesean", "Arabic Automobile",
-    "Cranberry Jones", "Spaulding", "Ernst Goatweight", "Golden Girl",
-    "Sperta Mclewin", "Phife dawg", "Mohamamed Ali", "Spencer Goatpence",
+    "Railyway Eddie", "Eggplant Parmesean", "Ron Waffelmobile",
+    "Cranberry Jones", "Spaulding Hernia", "Ernst Goatweight", "Golden Girl",
+    "Sperta Mclewin", "Phife dawg", "Mohamamed Ali", "Spencer Goatpaste",
     "Flailing armdillo", "Purple space unit", "grey farm armadillo", "Mason faceplant"]
     return eval("{}('{}')".format(random.choice(monsters),random.choice(names)))
 
+
 def get_reward():
+    '''Decides if a room contains a reward. less than favoraable odds'''
     return 1 if random.random() < .2 else 0
 
 def get_room_name():
-    return random.choice([
+    '''returns a random room name.
+    Those prepended with * will end the game
+    if dungeon.count > 10'''
+    desc = random.choice([
     "enterance",
     "kitchen",
     "pancake-storage",
@@ -44,6 +50,7 @@ def get_room_name():
     "*roman banana room",
     "*tall molerat bundle room",
     "*exit"])
+    return desc.title()
 
 def get_room_desc():
     return random.choice([
@@ -142,31 +149,74 @@ def get_room_desc():
     ])
 
 class Room:
-    def __init__(self):
-        self.name = get_room_name()
-        self.description = get_room_desc()
-        self.enemy = create_opponent()
-        self.reward = get_reward()
+    '''Class Level Docstring: 
+    An entirely randomly generated room within the dungeon.
+    it contains a room name, description, enemy, and occasional reward
+    name can be optionally passed in for 
+    customizable dungeon exploration experiences.
+    '''
+    
+    def __init__(self, name = get_room_name(), description =  get_room_desc(),
+    enemy = create_opponent(), reward = get_reward()):
+        self.name = name
+        self.description = description
+        self.enemy = enemy
+        self.reward = reward
     
     def __str__(self):
-        return "Room name: {}\n\
-        \r\rdescription: {}\n\
-        \r\rEnemy: {}\n\
-        \r\rReward: {}".format(self.name, self.description, self.enemy, self.reward)
+        '''I feel like this is redundant-
+        Objects default print mode is using repr, than str
+        check docs to clarify
+        '''
+        return "{}".format(self.__repr__())
     
     def __repr__(self):
         return {"name": self.name, "description" : self.description,
         "enemy": self.enemy, "reward" : self.reward}
 
+    @classmethod
+    def from_repr(cls, arg):
+        '''sort of unpythonic, but expected 
+        use case is only within this class'''
+        return Room(**arg)
+
 class Dungeon:
-    def __init__(self):
-        self.count = 0
-        
+    '''Class level docstring:
+    
+    '''
+    def __init__(self, previous = Room(), current = Room(), count = 0):
+        self.previous = previous
+        self.current = current
+        self.count = count
+           
+    #useless at this point, keeping for ideas
+    def link_room(self, direction, room_to_link):
+        '''Append room_to_link to self.linked_room'''
+        # self.linked_room[direction] = room_to_link
+        return NotImplemented
 
-def test():
-    D = Room()
-    while True:
-        resp = input()
-        skone = D.__repr__()
-        print(skone[resp])
+    def travel(self):
+        while True:
+            print("Which room would you like to travel to?")
+            for i in ("east", "north", "west"):
+                print(i)
+            direction = input().lower() 
+            if direction not in ("north","west","east"):
+                print("not a valid choice! try again")
+                continue
+            break
+        print("You chose to move",direction)
+        return Dungeon(previous = self.__repr__(), count = (self.count + 1))
 
+    def travel_back(self):
+        return Dungeon(previous = self.__repr__(), current = Room.from_repr(self.previous.__repr__()), count = (self.count + 1))
+
+
+def test():            
+    D = Dungeon()
+    still_here = D.travel()
+    again = D.travel_back()
+    nd_again = again.travel()
+    print(nd_again.count)
+
+test()

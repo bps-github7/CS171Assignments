@@ -62,7 +62,7 @@ Class Docstring:
     
     def do_damage(self, damage):    
         if self.defense_mode:
-            return True
+            self.__health -= damage // 2
         else:
             self.__health -= damage
     
