@@ -1,50 +1,54 @@
+'''
+Module Level Docstring:
+Implements 
+'''
+from Room import Room
+
 class Maze:
-	#Inputs: Pointer to start room and exit room
-	#Sets current to be start room
-	def __init__(self,st=None,ex=None):
-		#Room the player starts in
-		self.__start_room = st
-		#If the player finds this room they win
-		self.__exit_room = ex
-		#What room is the player currently in
-		self.__current = st
-	#Return the room the player is in (current)
-	def getCurrent(self):
-            return self.__current
-	#The next four all have the same idea
-	#See if there is a room in the direction
-	#If the direction is None, then it is impossible to go that way
-	#in this case return false
-	#If the direction is not None, then it is possible to go this way
-	#Update current to the new move (move the player)
-	#then return true so the main program knows it worked.
-	def moveNorth(self):
-            if (self.__current == self.__current.getnorth()):
-                return false
-            else:
-                return True
-	def moveSouth(self):
-	    if (self.__current == self.__current.getsouth()):
-                return false
-            else:
-                return True
-	def moveEast(self):
-            if (self.__current == self.__current.geteast()):
-                return false
-            else:
-                return True
-	def moveWest(self):
-            if (self.__current == self.__current.getsouth()):
-                return false
-            else:
-                return True
-	#If the current room is the exit,
-	#then the player won! return true
-	#otherwise return false
-	def atExit(self):
-		self.current = self.exit_room
-	#If you get stuck in the maze, you should be able to go
-	#back to the start
-	#This sets current to be the start_room
-	def reset(self):
-            self.__current = self.__start_room;
+    '''Class Level Docstring:'''
+    version = 2.0
+    def __init__(self,st,ex = Room()):
+		self.start = Room()
+		self.exit = ex
+		self.current = st
+    
+    def at_exit(self):
+		return True if self.current == self.exit else False
+
+    def reset(self):
+        self.current = self.start
+
+    # if current room has a room 
+    # in the intended movement direction, then
+    # change the current room to other_room: 
+    #  -> (reference to new Room object)
+    # if there isnt a room, return False
+    # because we cant move in this direction.
+
+    def move_north(self, other_room):
+        if self.current.north:
+            self.current = other_room
+            return True
+        else:
+            return False
+
+    def move_south(self, other_room):
+        if (self.current.south):
+            self.current = other_room
+            return True
+        else:
+            return False
+
+    def move_east(self, other_room):
+        if (self.current.east):
+            self.current = other_room
+            return True
+        else:
+            return False
+
+    def move_west(self, other_room):
+        if (self.current.west):
+            self.current = other_room
+            return True
+        else:
+            return False

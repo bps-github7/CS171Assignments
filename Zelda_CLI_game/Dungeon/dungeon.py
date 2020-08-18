@@ -162,7 +162,8 @@ class Room:
         self.description = description
         self.enemy = enemy
         self.reward = reward
-    
+        
+
     def __str__(self):
         '''I feel like this is redundant-
         Objects default print mode is using repr, than str
