@@ -166,10 +166,10 @@ class Room:
         self.description = get_room_desc()
         self.enemy = create_opponent()
         self.reward = get_reward()
-        self.north = self
-        self.south = self
-        self.east = self
-        self.west = self
+        self.north = None
+        self.south = None
+        self.east = None
+        self.west = None
 
     def __str__(self):
         return "Room Name: {}\n\
@@ -182,6 +182,20 @@ class Room:
     def __repr__(self):
         return {"name": self.name, "description" : self.description,
         "enemy": self.enemy, "reward" : self.reward}
+
+    # def available_moves(self):
+    #     '''Simple interface for printing 
+    #     available moves from the current one.
+    #     (ie. which rooms border this room)'''
+    #     if self.north:
+    #         print('north')
+    #     if self.south:
+    #         print('south')
+    #     if self.east:
+    #         print('east')
+    #     if self.west:
+    #         print('west')
+
 
     @classmethod
     def from_repr(cls, arg):

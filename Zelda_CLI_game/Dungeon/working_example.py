@@ -5,18 +5,10 @@
 from Room import Room
 from Maze import Maze
 
-# how to randomize the directions/ paths
-# cannot be purely random- because paths need to be semi intelligent in order to make sense
-
-
 rooms = []
-
 for i in range(36):
     d = Room()
     rooms.append(d)
-
-# for elements in rooms:
-#     print(elements)
 
 def set_north(room, border):
     room.north = border
@@ -46,63 +38,33 @@ def set_west(room, border):
 #| room 7 | room 8 | room 9 | room 10| room 11| room 12 |
 #| room 1 | room 2 | room 3 | room 4 | room 5 |  room 6 | 
 
-# im sure there is some way to do this in one go. experiment around a bit
+def create_maze(size = 36, row = 6):
+    for i in range(0,size):
+        # prevents level 1 right border from linking to level 2 left border
+        if i % row == 0:
+            continue
+        set_east(rooms[i], rooms[i+1])
+        # prevents top border from being linked to non existent list members.
+        if i > size - (row + 1):
+            continue
+        set_north(rooms[i], rooms[i+6])
 
-for i in range(0,36):
-    if i % 6 == 0:
-        continue
-    #i think that does it, but need to validate
-    set_east(rooms[i], rooms[i+1])
-    set_north(rooms[i], rooms[i+6])
+def make_move(maze, player_input):
+    if player_input == 'north':
+        print("You moved north") if maze.move_north(maze.current.north) else print('Invalid direction')
+    elif player_input.lower() == 'South':
+        print("you went south") if maze.move_south(maze.current.south) else print('invalid direction.')
+    elif player_input == 'West':
+        print("you went west") if maze.move_west(maze.current.west) else print('Invalid direction.')
+    elif player_input == 'East':
+        print('You moved east') if maze.move_east(maze.current.east) else print('invalid direction.')
 
+def test(maze = Maze()):
+    while True:
+        print(maze.current)
+        # maze.current.available_moves(maze.current)
+        # with that commented out, player can no longer tell which directions can be traveled in.
+        make_move(maze, player_input = input("Which direction do you want to go?\n").lower())
+        # seems that current never gets changed by player input
 
-# #first row east to west
-# for i in range(0,6):
-#     set_east(rooms[i], rooms[i+1])
-
-
-# #second row east to west
-# for i in range(6, 11):
-#     set_east(rooms[i], rooms[i+1])
-
-# #third row east to west
-# for i in range(11, 17):
-#     set_east(rooms[i], rooms[i+1])
-
-# # fourth row east to west
-# for i in range(17, 23):
-#     set_east(rooms[i], rooms[i+1])
-
-# # fifth row east to west
-# for i in range(23, 29):
-#     set_east(rooms[i], rooms[i+1])
-
-# # sixth row east to west
-# for i in range(29, 36):
-#     set_east(rooms[i], rooms[i+1])
-
-
-# while True:
-#     print(maze.getCurrent())
-#     Pinput = input("Which direction do you want to go?\n")
-#     if Pinput == 'North':
-#         if maze.movenorth():
-#             print("you went north")
-#         else:
-#             print("Invalid direction")
-#     elif Pinput == 'South':
-#         if maze.movesouth():
-#             print("you went south")
-#         else:
-#             print("invalid direction")
-#     elif Pinput == 'West':
-#         if maze.movewest():
-#             print("you went west")
-#         else:
-#             print("Invalid direction")
-#     elif Pinput == 'East':
-#         if maze.moveeast():
-#             print("you went east")
-#         else:
-#             print("invalid direction")
-#
+test()

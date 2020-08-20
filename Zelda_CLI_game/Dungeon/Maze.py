@@ -7,11 +7,11 @@ from Room import Room
 class Maze:
     '''Class Level Docstring:'''
     version = 2.0
-    def __init__(self,st,ex = Room()):
-        self.start = Room()
+    def __init__(self, st = Room(), ex = Room()):
+        self.start = st
         self.exit = ex
         self.current = st
-    
+
     def at_exit(self):
         return True if self.current == self.exit else False
 
