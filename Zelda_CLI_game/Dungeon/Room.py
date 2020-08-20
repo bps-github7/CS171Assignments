@@ -2,10 +2,15 @@
 
 '''
 
-from CS171Assignments.Zelda_CLI_game.Enemies.Bokoblin import Bokoblin
-from CS171Assignments.Zelda_CLI_game.Enemies.Chuchu import Chuchu
-from CS171Assignments.Zelda_CLI_game.Enemies.Moblin import Moblin
-from CS171Assignments.Zelda_CLI_game.Enemies.Darknut import Darknut
+#qyeing up folder in system path for import statements below.
+import sys
+sys.path.insert(0, 'C:\\Users\\Ben\\vscodeSCM\\CS171Assignments\\Zelda_CLI_game\\Enemies')
+
+
+from Bokoblin import Bokoblin
+from Chuchu import Chuchu
+from Moblin import Moblin
+from Darknut import Darknut
 import random
 
 def create_opponent():

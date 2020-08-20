@@ -8,12 +8,12 @@ class Maze:
     '''Class Level Docstring:'''
     version = 2.0
     def __init__(self,st,ex = Room()):
-		self.start = Room()
-		self.exit = ex
-		self.current = st
+        self.start = Room()
+        self.exit = ex
+        self.current = st
     
     def at_exit(self):
-		return True if self.current == self.exit else False
+        return True if self.current == self.exit else False
 
     def reset(self):
         self.current = self.start
