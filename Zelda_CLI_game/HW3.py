@@ -74,7 +74,7 @@ def triforce():
     \__________/\__________/""")
     return 0
 
-def  game_intro():
+def game_intro():
     time.sleep(3.0)
     print("You are exploring deep in the dark forbidden woods,\n\n\
     \n\nSent by the Greak Deku tree to rescue a Korok called Makar...\n\n")
@@ -90,8 +90,12 @@ def main():
     ''''''
     # intro()
     # triforce()
+
+    #dont need to worry about doing that here- at least opponent part...
     link = create_player()
+    #
     opponent = create_opponent()
+
     print("player name: {}".format(link.name))
     print("Opponent name: {}".format(opponent.name))
     game_intro()
@@ -105,14 +109,7 @@ hero can choose to go behind different
 paths and face different monsters, getting
 occasional rewards.
 
-maybe consider using a Object Oriented Approach for this?
-
     '''
-    south = [[],[],[],[],[],[],[],[],[]]
-    north = [[],[],[],[],[],[],[],[],[]]
-    east = [[],[],[],[],[],[],[],[],[]]
-    west = [[],[],[],[],[],[],[],[],[]]
-
 
 main()
 # game_intro()
