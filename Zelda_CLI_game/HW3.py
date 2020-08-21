@@ -110,6 +110,7 @@ paths and face different monsters, getting
 occasional rewards.
 
     '''
+    return NotImplemented
 
 main()
 # game_intro()

@@ -46,8 +46,8 @@ def create_opponent():
     monsters = ["Chuchu","Bokoblin","Moblin","Darknut"]
     names = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments\
-        Zelda_CLI_game\Dungeon\assets\opponents.txt') as file:
+    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    r'\Zelda_CLI_game\Dungeon\assets\opponents.txt') as file:
         for lines in file:
             names.append(lines.strip('\n'))
     return eval("{}('{}')".format(random.choice(monsters),
@@ -55,29 +55,30 @@ def create_opponent():
 
 #make these create_room_name, Create_room_desc, create_reward
 # more inline with what the function does, and looks better.
-def get_room_name():
+def create_room_name():
     '''returns a random room name.
     Those prepended with * will end the game
     if dungeon.count > 10'''
     room_names = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments\
-        Zelda_CLI_game\Dungeon\assets\room_names.txt') as file:
+    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    r'\Zelda_CLI_game\Dungeon\assets\room_names.txt') as file:
         for lines in file:
             room_names.append(lines.strip('\n'))    
     name = random.choice(room_names)
     return name.title()
 
-def get_room_desc():
+def create_room_desc():
     descriptions = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments\
-        Zelda_CLI_game\Dungeon\assets\room_desc.txt') as file:
-        for lines in file:
+    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    r'\Zelda_CLI_game\Dungeon\assets\room_desc.txt') as file:
+        contents = file.read()
+        for lines in contents.split('/'):
             descriptions.append(lines.strip('\n'))
     return random.choice(descriptions)
 
-def get_reward():
+def create_reward():
     '''Decides if a room contains a reward. less than favoraable odds'''
     return 1 if random.random() < .2 else 0
 
@@ -94,10 +95,10 @@ class Room:
         on seperate iterations- so figure out how to 
         (non-permanently) delete an entry after reading from it
         2) ^^^ would be a nice touch ^^^ '''
-        self.name = get_room_name()
-        self.description = get_room_desc()
+        self.name = create_room_name()
+        self.description = create_room_desc()
         self.enemy = create_opponent()
-        self.reward = get_reward()
+        self.reward = create_reward()
         self.north = None
         self.south = None
         self.east = None
@@ -138,3 +139,5 @@ class Room:
         '''sort of unpythonic, but expected 
         use case is only within this class'''
         return Room(**arg)
+
+print(create_room_desc())
