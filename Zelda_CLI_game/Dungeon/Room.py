@@ -53,6 +53,8 @@ def create_opponent():
     return eval("{}('{}')".format(random.choice(monsters),
     random.choice(names)))
 
+#make these create_room_name, Create_room_desc, create_reward
+# more inline with what the function does, and looks better.
 def get_room_name():
     '''returns a random room name.
     Those prepended with * will end the game
