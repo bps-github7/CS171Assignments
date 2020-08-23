@@ -53,11 +53,6 @@ class Maze:
         else:
             return False
 
-rooms = []
-for i in range(36):
-    d = Room()
-    rooms.append(d)
-
 def set_north(room, border):
     room.north = border
     border.south = room
@@ -87,6 +82,10 @@ def set_west(room, border):
 #| room 1 | room 2 | room 3 | room 4 | room 5 |  room 6 | 
 
 def create_maze(size = 36, row = 6):
+    rooms = []
+    #creates the rooms for the maze
+    for i in range(36):
+        rooms.append(Room())
     for i in range(0,size):
         # prevents level 1 right border from linking to level 2 left border
         if i % row == 0:
@@ -125,7 +124,6 @@ def navigate(maze = Maze(st = rooms[2])):
         print(maze.current)
         print("\n\navailable moves:")
         maze.current.available_moves()
-    
         maze = make_move(maze, player_input = input("Which direction do you want to go? ").lower())
 
 def main():

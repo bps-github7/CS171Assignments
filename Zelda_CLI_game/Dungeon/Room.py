@@ -4,7 +4,7 @@
 
 #qyeing up folder in system path for import statements below.
 import sys
-sys.path.insert(0, 'C:\\Users\\Ben\\vscodeSCM\\CS171Assignments\\Zelda_CLI_game\\Enemies')
+sys.path.insert(0, r'C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies')
 
 
 from Bokoblin import Bokoblin
@@ -53,8 +53,6 @@ def create_opponent():
     return eval("{}('{}')".format(random.choice(monsters),
     random.choice(names)))
 
-#make these create_room_name, Create_room_desc, create_reward
-# more inline with what the function does, and looks better.
 def create_room_name():
     '''returns a random room name.
     Those prepended with * will end the game
