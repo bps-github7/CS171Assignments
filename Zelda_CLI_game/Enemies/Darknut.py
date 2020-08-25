@@ -28,7 +28,7 @@ class Darknut(Enemy):
     
     def get_health(self):
         '''returns health / total health'''
-        return "{} / 500 Health points".format(self.__health)
+        return "{} / 500".format(self.__health)
     
     def get_name(self):
         '''returns the name.'''

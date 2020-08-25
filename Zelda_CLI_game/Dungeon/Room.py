@@ -137,5 +137,3 @@ class Room:
         '''sort of unpythonic, but expected 
         use case is only within this class'''
         return Room(**arg)
-
-print(create_room_desc())

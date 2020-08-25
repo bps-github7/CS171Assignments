@@ -26,7 +26,7 @@ Class Docstring:
 
     
     def get_health(self):#returns health
-        return "Remaining health: {} / 300"\
+        return "{} / 300"\
         .format(self.__health)
     
     def get_name(self):#returns name

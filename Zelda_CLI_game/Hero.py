@@ -7,6 +7,8 @@ Software: Zelda CLI mini game
 Module Level Docstring: Implements a Hero class which 
 creates the playable character in the cmd line game.
 '''
+import sys
+sys.path.insert(0, r"C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies")
 from Enemy import Enemy
 
 class Hero(Enemy):
@@ -78,7 +80,7 @@ class Hero(Enemy):
             else:
                 self.defense_mode = True
                 enemy.do_damage(110)
-                self.health -= 20
+                self.__health -= 20
                 return "The bomb was very powerful.\n\
             Your enemy was badly injured,\n\
             but you were damaged as well by the shrapnel"
@@ -114,7 +116,7 @@ class Hero(Enemy):
     
     def elixer_name(self):
         '''Returns the name of the elixer move.'''
-        return "Drank an elixer"
+        return "{} drank an elixer".format(self.name)
     
     def elixer_count(self):
         '''Returns the amount of remaining elixers vs max elixers.'''

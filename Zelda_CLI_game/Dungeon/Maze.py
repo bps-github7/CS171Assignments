@@ -81,11 +81,13 @@ def set_west(room, border):
 #| room 7 | room 8 | room 9 | room 10| room 11| room 12 |
 #| room 1 | room 2 | room 3 | room 4 | room 5 |  room 6 | 
 
+'''Making this global for accesibility sake'''
+rooms = []
+#creates the rooms for the maze
+for i in range(36):
+    rooms.append(Room())
+
 def create_maze(size = 36, row = 6):
-    rooms = []
-    #creates the rooms for the maze
-    for i in range(36):
-        rooms.append(Room())
     for i in range(0,size):
         # prevents level 1 right border from linking to level 2 left border
         if i % row == 0:
@@ -100,9 +102,10 @@ def create_maze(size = 36, row = 6):
         set_north(rooms[i], rooms[i+6])
 
 def make_move(maze, player_input):
+    '''need to do input validation before passing an argument- make sure its lower'''
     if player_input in ('north','^') and maze.move_north(maze.current.north):
         print('You went north.\n')
-    elif player_input.lower() in ('south','v') and maze.move_south(maze.current.south):
+    elif player_input in ('south','v') and maze.move_south(maze.current.south):
         print("You went south.\n")
     elif player_input in ('west','<') and maze.move_west(maze.current.west):
         print("You went west.\n")
@@ -133,7 +136,4 @@ def main():
 # main()
 
 if __name__ == "__main__":
-    m = Maze()
-    m.current.south = Room()
-    m.current.south = Room()
-    print(m.current.south)
+    print("running in standby mode")
