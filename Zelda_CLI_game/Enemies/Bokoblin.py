@@ -24,7 +24,11 @@ class Bokoblin:
     def __str__(self):
         return "a Bokoblin named {} is partying nearby".format(self.name)
     
-    def get_health(self):
+    def get_health(self, numeric = False):
+        '''returns a UI friendly health bar or
+        purely numeric value depending on if
+        numeric is overridden in runtime.'''
+        if numeric: return int(self.__health)
         return "{} / 120".format(self.__health)
     
     def get_name(self):

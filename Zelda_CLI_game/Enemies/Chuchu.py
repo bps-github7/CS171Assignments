@@ -22,9 +22,13 @@ class Chuchu:
         self.defense_mode = True
 
     def __str__(self):
-        return "a Chuchu named {} is chuggin' away nearby".format(self.name)
+        return "a young Chuchu named {} is chuggin' away nearby".format(self.name)
     
-    def get_health(self):
+    def get_health(self, numeric = False):
+        '''returns a UI friendly health bar or
+        purely numeric value depending on if
+        numeric is overridden in runtime.'''
+        if numeric: return int(self.__health)
         return "{} / 80".format(self.__health)
     
     def get_name(self):

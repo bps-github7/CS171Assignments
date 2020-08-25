@@ -26,8 +26,11 @@ class Darknut(Enemy):
     def __str__(self):
         return "a Darknut named {} is attacking ".format(self.name)
     
-    def get_health(self):
-        '''returns health / total health'''
+    def get_health(self, numeric = False):
+        '''returns a UI friendly health bar or
+        purely numeric value depending on if
+        numeric is overridden in runtime.'''
+        if numeric: return int(self.__health)
         return "{} / 500".format(self.__health)
     
     def get_name(self):

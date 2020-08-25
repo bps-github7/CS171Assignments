@@ -117,12 +117,18 @@ def arrow(attacker, defender):
     print("you have {} arrows left".format(attacker.arrow_count()))
     return 1
 
+def bomb(attacker, defender):
+    print("{} used {}".format(attacker.get_name(), attacker.special_name()))
+    print(attacker.special_attack(defender))
+    return 1
+
 def special_hero_move(attacker, defender, attack):
     if attack == "elixer":
         return elixer(attacker)
     elif attack == "arrow":
         return arrow(attacker, defender)
-
+    else:
+        bomb(attacker, defender)
 
 def attack(attacker, defender, attack = ["basic", "defense", "special"]):
     #returns error code if attack is invalid attack name
@@ -133,7 +139,7 @@ def attack(attacker, defender, attack = ["basic", "defense", "special"]):
     if isinstance(attacker, Hero): 
         #setting actors tuple ensures that user prompt has correct grammer
         actors = ("you","opponent")
-        if attack not in ("basic", "defense","special"): return special_hero_move(attacker, defender, attack)
+        if attack not in ("basic", "defense"): return special_hero_move(attacker, defender, attack)
     else: actors = ("opponent","you")
     eval("attacker.{}_attack(defender)".format(attack))
     print("{} used {}".format(actors[0], eval("attacker.{}_name()".format(attack))))
@@ -155,9 +161,11 @@ def player_move(link, enemy):
     4 : "arrow",
     5 : "elixer",
     6 : "sys.exit(0)" }
+    return validate(link, enemy, choices, moves)
+    
+    # return choices[int(choice)]
 
-    # # need input validation here
-
+def validate(link, enemy, choices, moves):
     while True:
         for i in range(1, 7): print(moves[i])
         choice = input("What would you like to do?\n")
@@ -172,25 +180,50 @@ def player_move(link, enemy):
         elif choice == "help":
             continue
         elif choice in ('6','quit'): sys.exit(0)
-        
         attack(link, enemy, choices[int(choice)])
         return 1
-    # return choices[int(choice)]
 
 
-def test():
-    import Room
-    link = create_player()
-    enemy = Room.create_opponent()
-    # attack(link, enemy, attack = "basic")
-    # starting_health(link, enemy)
-    # print(link.get_health())
-    player_move(link, enemy)
 
 def starting_health(link, monster):
     link.reset_health()
     monster.reset_health()
 
+def check_health(link, monster):
+    print("You: {} health points".format(link.get_health()))
+    print("Opponent: {} health points".format(monster.get_health()))
+
+def monster_move(link, monster):
+    '''picks a move from a set of 3
+    invokes it on link and prints feedback to user.'''
+    return attack(monster, link, attack = random.choice("basic","defense","special"))
+
+def zelda_battle(link, monster):
+    # reset both opponents health
+    # # suspect there is a neater way to do this via tuple unpacking...
+    starting_health(link, monster)
+    #itd be cool if this condition worked. but it doesnt look like it will
+    while ((link.get_health(numeric = True) <= 0) and (monster.get_health(numeric = True) <= 0)):
+        print("sibksu")
+        print(player_move(link, monster))
+        print(monster_move(link, monster))
+
+
+def test():
+    import Room
+    ### remove the monotany of recreating player name every time
+    # link = create_player()
+    link = Hero("linko")
+    enemy = Room.create_opponent()
+    # attack(link, enemy, attack = "basic")
+    # starting_health(link, enemy)
+    # print(link.get_health())
+
+    ### need to be fully debugged here
+    # player_move(link, enemy)
+    # monster_move(link, enemy)
+
+    zelda_battle(link, enemy)
 
 # def zelda_battle(link, monster):
 #     '''

@@ -24,8 +24,11 @@ Class Docstring:
     def __str__(self):
         return "a Moblin named {} is attacking".format(self.name)
 
-    
-    def get_health(self):#returns health
+    def get_health(self, numeric = False):
+        '''returns a UI friendly health bar or
+        purely numeric value depending on if
+        numeric is overridden in runtime.'''
+        if numeric: return int(self.__health)
         return "{} / 300"\
         .format(self.__health)
     

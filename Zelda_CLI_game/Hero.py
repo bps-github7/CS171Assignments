@@ -7,6 +7,7 @@ Software: Zelda CLI mini game
 Module Level Docstring: Implements a Hero class which 
 creates the playable character in the cmd line game.
 '''
+import random
 import sys
 sys.path.insert(0, r"C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies")
 from Enemy import Enemy
@@ -44,17 +45,21 @@ class Hero(Enemy):
         return "{}\na young warrior - clad in green".format(self.name)
     
     
-    def get_health(self):
+    def get_health(self, numeric = False):
+        if numeric: return int(self.__health)
         return "{} / 200".format(self.__health)
     
     def basic_attack(self, enemy):
         '''Offensive attack that leaves Hero vulnerable.'''
         self.defense_mode = False
-        enemy.do_damage(50)
+        enemy.do_damage(random.randint(20, 70))
     
     def basic_name(self):
         '''Provides name for Hero basic attack.'''
-        return "Used the Master Sword"
+        return random.choice("vertical slash", "horizontal slash",
+        "thrust", "spin attack", "parry attack", "jump attack",
+        "mortal blow", "back slice", "helm splitter","great spin",
+        "huricane spin")
     
     def defense_attack(self, enemy):
         '''Parry attack that bolsters hero defense
@@ -64,7 +69,8 @@ class Hero(Enemy):
     
     def defense_name(self):
         '''Returns the name for Hero defense attack'''
-        return "Shield strike"
+        return random.choice("shield parry strike", "weasel artilleru dodge",
+        "straif left", "straif right", "straif back", "shield strike")
     
     def special_attack(self, enemy):
         '''A Powerful attack that does higher amount of damage 
@@ -76,20 +82,20 @@ class Hero(Enemy):
             if self.defense_mode:
                 self.defense_mode = False
                 enemy.do_damage(75)
-                return "The bomb had a Direct Hit.\nYour enemy recoils"
+                return "The bomb had a direct Hit.\nYour enemy recoils"
             else:
                 self.defense_mode = True
                 enemy.do_damage(110)
                 self.__health -= 20
                 return "The bomb was very powerful.\n\
-            Your enemy was badly injured,\n\
-            but you were damaged as well by the shrapnel"
+            \r\rYour enemy was badly injured,\n\
+            \r\rbut you were damaged as well by the shrapnel"
         else:
             return "No bombs remaining.\nCannot use Special attack."
 
     def special_name(self):
         '''Returns the name of the special attack.'''
-        return "Used a bomb"
+        return "a bomb"
     
     def use_arrow(self, enemy):
         '''Projectile attack:
