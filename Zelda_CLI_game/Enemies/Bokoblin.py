@@ -6,6 +6,9 @@ Ben Sehnert
 Module Level Docstring
 
 '''
+
+
+
 #import ABC enemy
 from Enemy import Enemy
 
@@ -71,10 +74,5 @@ class Bokoblin:
         self.__health = 120
 
 if __name__ == "__main__":
-    from Moblin import Moblin
     print("Running in standby mode")
-    B = Bokoblin('Dutch')
-    M = Moblin('Gary')
-    M.special_attack(B)
-    M.basic_attack(B)
-    print(B.get_health())
+    

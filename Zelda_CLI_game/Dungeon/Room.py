@@ -2,16 +2,15 @@
 
 '''
 
-#qyeing up folder in system path for import statements below.
 import sys
-sys.path.insert(0, r'C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies')
+import random
 
+sys.path.insert(0, "C:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game\\Enemies")
 
 from Bokoblin import Bokoblin
 from Chuchu import Chuchu
 from Moblin import Moblin
 from Darknut import Darknut
-import random
 
 # Idea for moving back and fourth between previous rooms-
 # pass alt constructor previous rooms' repr method
@@ -46,8 +45,9 @@ def create_opponent():
     monsters = ["Chuchu","Bokoblin","Moblin","Darknut"]
     names = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
-    r'\Zelda_CLI_game\Dungeon\assets\opponents.txt') as file:
+    with open(r'C:\Users\Ben\VsCode\CS171Assignments\Zelda_CLI_game\Dungeon\assets\opponents.txt') as file:
+    # with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    # r'\Zelda_CLI_game\Dungeon\assets\opponents.txt') as file:
         for lines in file:
             names.append(lines.strip('\n'))
     return eval("{}('{}')".format(random.choice(monsters),
@@ -59,7 +59,7 @@ def create_room_name():
     if dungeon.count > 10'''
     room_names = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    with open(r'C:\Users\Ben\VsCode\CS171Assignments'
     r'\Zelda_CLI_game\Dungeon\assets\room_names.txt') as file:
         for lines in file:
             room_names.append(lines.strip('\n'))    
@@ -69,7 +69,7 @@ def create_room_name():
 def create_room_desc():
     descriptions = []
     # not very reusable: consider other users environments...
-    with open(r'C:\Users\Ben\vscodeSCM\CS171Assignments'
+    with open(r'C:\Users\Ben\VsCode\CS171Assignments'
     r'\Zelda_CLI_game\Dungeon\assets\room_desc.txt') as file:
         contents = file.read()
         for lines in contents.split('/'):
@@ -137,3 +137,12 @@ class Room:
         '''sort of unpythonic, but expected 
         use case is only within this class'''
         return Room(**arg)
+
+if __name__ == "__main__":
+    print("running in standby mode")
+    # print("sustem path:")
+    # print(sys.path)
+    # print("sys path hooks:")
+    # print(sys.path_hooks)
+    # print("sys path import cache:")
+    # print(sys.path_importer_cache)

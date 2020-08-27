@@ -9,6 +9,7 @@ cs 172 moblin class
 
 '''
 from Enemy import Enemy
+
 class Moblin(Enemy):
     '''
 Class Docstring:

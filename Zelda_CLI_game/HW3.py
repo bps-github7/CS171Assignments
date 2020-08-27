@@ -7,15 +7,41 @@ Date: 8/15/2020
 import time
 import random
 import sys
-sys.path.insert(0, r'C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game')
+sys.path.insert(0, 'c:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game')
 from Hero import Hero
-sys.path.insert(0, r'C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies')
-from Bokoblin import Bokoblin
-from Chuchu import Chuchu
-from Darknut import Darknut
-from Moblin import Moblin
-sys.path.insert(0, r'C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Dungeon')
-from Maze import Maze
+sys.path.insert(0, 'c:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game\\Enemies')
+from Enemies.Bokoblin import  Bokoblin
+from Enemies.Chuchu import Chuchu
+from Enemies.Moblin import Moblin
+from Enemies.Darknut import Darknut
+sys.path.insert(0, 'c:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game\\Dungeon')
+from Dungeon.Maze import Maze
+
+def game_over():
+    '''prints game over- shown if user dies in battle'''
+    print('''
+          _             _                 _   _        _               _     _          _      _            _      
+        /\ \          / /\              /\_\/\_\ _   /\ \            /\ \  /\ \    _ / /\    /\ \         /\ \    
+       /  \ \        / /  \            / / / / //\_\/  \ \          /  \ \ \ \ \  /_/ / /   /  \ \       /  \ \   
+      / /\ \_\      / / /\ \          /\ \/ \ \/ / / /\ \ \        / /\ \ \ \ \ \ \___\/   / /\ \ \     / /\ \ \  
+     / / /\/_/     / / /\ \ \        /  \____\__/ / / /\ \_\      / / /\ \ \/ / /  \ \ \  / / /\ \_\   / / /\ \_\ 
+    / / / ______  / / /  \ \ \      / /\/________/ /_/_ \/_/     / / /  \ \_\ \ \   \_\ \/ /_/_ \/_/  / / /_/ / / 
+   / / / /\_____\/ / /___/ /\ \    / / /\/_// / / /____/\       / / /   / / /\ \ \  / / / /____/\    / / /__\/ /  
+  / / /  \/____ / / /_____/ /\ \  / / /    / / / /\____\/      / / /   / / /  \ \ \/ / / /\____\/   / / /_____/   
+ / / /_____/ / / /_________/\ \ \/ / /    / / / / /______     / / /___/ / /    \ \ \/ / / /______  / / /\ \ \     
+/ / /______\/ / / /_       __\ \_\/_/    / / / / /_______\   / / /____\/ /      \ \  / / /_______\/ / /  \ \ \    
+\/___________/\_\___\_    /____/_/       \/_/\/__________/   \/_________/ _      \_\/\/__________/\/_/    \_\/    
+/\ \     /\_\       /\ \  /\_\                   /\ \         /\ \       /\ \      /\ \                           
+\ \ \   / / /      /  \ \/ / /         _        /  \ \____    \ \ \     /  \ \    /  \ \____                      
+ \ \ \_/ / /      / /\ \ \ \ \__      /\_\     / /\ \_____\   /\ \_\   / /\ \ \  / /\ \_____\                     
+  \ \___/ /      / / /\ \ \ \___\    / / /    / / /\/___  /  / /\/_/  / / /\ \_\/ / /\/___  /                     
+   \ \ \_/      / / /  \ \_\__  /   / / /    / / /   / / /  / / /    / /_/_ \/_/ / /   / / /                      
+    \ \ \      / / /   / / / / /   / / /    / / /   / / /  / / /    / /____/\ / / /   / / /                       
+     \ \ \    / / /   / / / / /   / / /    / / /   / / /  / / /    / /\____\// / /   / / /                        
+      \ \ \  / / /___/ / / / /___/ / /     \ \ \__/ / /__/ / /__  / / /______\ \ \__/ / /                         
+       \ \_\/ / /____\/ / / /____\/ /       \ \___\/ /\__\/_/___\/ / /_______\\ \___\/ /                          
+        \/_/\/_________/\/_________/         \/_____/\/_________/\/__________/ \/_____/                           
+                                                                                        ''')
 
 def intro():
     '''Start screen- first thing user sees'''
@@ -140,10 +166,10 @@ def attack(attacker, defender, attack = ["basic", "defense", "special"]):
         #setting actors tuple ensures that user prompt has correct grammer
         actors = ("you","opponent")
         if attack not in ("basic", "defense"): return special_hero_move(attacker, defender, attack)
+    #not sure if u need this actors thing since moving health bar display out of here...
     else: actors = ("opponent","you")
     eval("attacker.{}_attack(defender)".format(attack))
     print("{} used {}".format(actors[0], eval("attacker.{}_name()".format(attack))))
-    print("{} : {} health points remaining".format(actors[1], defender.get_health()))
     return 1
 
 def player_move(link, enemy):
@@ -161,10 +187,11 @@ def player_move(link, enemy):
     4 : "arrow",
     5 : "elixer",
     6 : "sys.exit(0)" }
-    return validate(link, enemy, choices, moves)
+    validate(link, enemy, choices, moves)
+    # choice = validate(moves)
+    # if choice:
+    #     return attack(link, enemy, choices[int(choice)])
     
-    # return choices[int(choice)]
-
 def validate(link, enemy, choices, moves):
     while True:
         for i in range(1, 7): print(moves[i])
@@ -180,8 +207,7 @@ def validate(link, enemy, choices, moves):
         elif choice == "help":
             continue
         elif choice in ('6','quit'): sys.exit(0)
-        attack(link, enemy, choices[int(choice)])
-        return 1
+        return attack(link, enemy, attack = choices[int(choice)])
 
 
 
@@ -196,18 +222,36 @@ def check_health(link, monster):
 def monster_move(link, monster):
     '''picks a move from a set of 3
     invokes it on link and prints feedback to user.'''
-    return attack(monster, link, attack = random.choice("basic","defense","special"))
+    return attack(monster, link, attack = random.choice(["basic","defense","special"]))
+
+def player_turn(link, monster):
+    player_move(link, monster)
+    if monster.get_health(numeric = True) <= 0:
+        print("you defeated {}".format(monster.get_name()))
+        print("good work.")
+        return True
+    print("opponent: {} Health points remaining".format(monster.get_health()))
+
+def monster_turn(link, monster):
+    monster_move(link, monster)
+    if link.get_health(numeric = True) <= 0:
+        game_over()
+        print("You were defeated. Better luck next time!")
+        return False
+    print("you: {} health points remaining".format(link.get_health()))
 
 def zelda_battle(link, monster):
     # reset both opponents health
     # # suspect there is a neater way to do this via tuple unpacking...
     starting_health(link, monster)
+    # print(link.get_health())
     #itd be cool if this condition worked. but it doesnt look like it will
-    while ((link.get_health(numeric = True) <= 0) and (monster.get_health(numeric = True) <= 0)):
-        print("sibksu")
-        print(player_move(link, monster))
-        print(monster_move(link, monster))
-
+    while ((link.get_health(numeric = True) > 0) and (monster.get_health(numeric = True) > 0)):
+        winner = player_turn(link, monster)
+        if winner: return True
+        monster_turn(link, monster)
+        
+        
 
 def test():
     import Room
@@ -215,123 +259,6 @@ def test():
     # link = create_player()
     link = Hero("linko")
     enemy = Room.create_opponent()
-    # attack(link, enemy, attack = "basic")
-    # starting_health(link, enemy)
-    # print(link.get_health())
-
-    ### need to be fully debugged here
-    # player_move(link, enemy)
-    # monster_move(link, enemy)
-
     zelda_battle(link, enemy)
 
-# def zelda_battle(link, monster):
-#     '''
-#     '''
-#     # more than certain we can get rid of this line
-#     # winner = ''
-
-#     #Reset health
-#     starting_health(link, monster)
-
-
-#     print(monster.getName())
-#     print(monster.getDesc())
-#     #sets who goes first, second
-#     attacker = link
-#     defender = monster
-#     loop = True
-#     while loop:
-#         user = input("avaiable moves are: (1)use master sword (2)Hide behind shield (3)throw a bomb(special move)\n(4)use an elixer(heals 50% health) (5)shoot arrow(limited supply: deals greater damage then other attacks)\n(6)Type quit at anytime to leave the game.")
-#         #handles quitting. exits the function, which returns a message that is printed outside the function which then proceeds to break from main loop
-#         if user == "quit".lower() or user == "(6)" or user == 6:
-#             print("Game over.\nThanks for playing.")
-#             sys.exit()
-            
-#         if int(attacker.getHealth()) <= 0:
-#             winner = "{}".format(monster.getName())
-#             loop = False
-#         elif user == "(1)" or user == "1" or user == "use master sword".lower():
-#             link.basic_Attack(monster)
-#             print("you used {}".format(link.basic_Name()))
-#             print("Your foe has",monster.getHealth(),"health points remaining")
-#             print(link.getDesc(),"\n\n")
-#         elif user == "(2)" or user == "2" or user == "Hide behind shield".lower() or user == "shield".lower():
-#             link.defense_Attack(monster)
-#             print("you used {}".format(link.defense_Name()))
-#             print("Your foe has",monster.getHealth(),"health points remaining")
-#             print(link.getDesc(),"\n\n")
-#         elif user == "(3)" or user == "3".lower() or user == "throw a bomb".lower() or user == "special attack".lower():
-#             link.special_Attack(monster)
-#             print("you used {}".format(link.special_Attack(enemy)))
-#             print("Your foe has",monster.getHealth(),"health points remaining")
-#             print(link.getDesc(),"\n\n")
-#         elif user == "(4)".lower() or user == "4".lower() or user == "use an elixer".lower() or user == "elixer".lower():
-#             if int(link.elixer_Count()) < 1:
-#                 print("You have run out of elixers")
-#                 break
-#             link.elixer()
-#             print("you used {}".format(link.elixer()))
-#             print(link.getDesc(),"\n\n")
-#         elif user == "(5)".lower() or user == "5".lower() or user == "use an arrow".lower() or user == "arrow".lower():
-#             if int(link.arrow_Count()) < 1:
-#                 print("Your quiver is empty")
-#                 break
-#             link.use_Arrow(monster)
-#             print("you used {}".format(link.arrow_Name()))
-#             print("Your foe has",monster.getHealth(),"health points remaining")
-#             print(link.getDesc(),"\n\n")
-#         #monsters turn to attack: 1 out of 3 moves are randomly selected, then message about attack is printed out.
-#         if int(defender.getHealth()) < 0:
-#             print("you defeated this monster, Great work!")
-#             winner = "{}".format(link.getName())
-#             loop = False
-#             break
-#         chose = random.randint(1,3)
-#         if chose == 1:
-#             monster.basic_Attack(link)
-#             print("your opponent used",monster.basic_Name())
-#             print("Your health is now:",link.healthBar())
-#         if chose == 2:
-#             monster.defense_Attack(link)
-#             print("your opponent used",monster.defense_Name())
-#             print("Your health is now:",link.healthBar())
-#         if chose == 3:
-#             monster.special_Attack(link)
-#             print("your opponent used",monster.special_Name())
-#             print("Your health is now:",link.healthBar())
-#     #handles returning the appropriate values
-#     if winner == (link.getName()):
-#         return winner
-#     elif winner == (monster.getName()):
-#         return winner
-#     else:
-#         return winner
-
-# def extra_stuff():
-#     '''
-# main function takes no parameters, no return values
-# handles running all program features
-#     '''
-#     random.seed(0)
-#     if __name__=="__main__":
-#         loop = True
-#         while loop:
-#             #loops continuosly until player decides to stop playing
-#             for i in monster_list:
-#                 winner = zelda_Battle(link, i)
-#             if winner != "link":
-#                 print("you were defeated. Better Luck next time.")
-#                 loop = False
-#             else:
-#                 print("You have defeated all the available monsters.")
-#                 choose = input("continue to search for markar (yes)/(no)? or look for more monsters to fight?")
-#                 if choose == "yes".lower() or choose == "yeah".lower() or choose == "ye".lower():
-#                     triforce()
-#                     print("Good luck saving Makar. God Speed {}!!!".format(link.getName()))
-#                     loop = False
-#                 elif choose == "no":
-#                     loop = True
-
-# main()
 test()

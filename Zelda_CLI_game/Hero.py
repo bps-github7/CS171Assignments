@@ -9,8 +9,7 @@ creates the playable character in the cmd line game.
 '''
 import random
 import sys
-sys.path.insert(0, r"C:\Users\Ben\vscodeSCM\CS171Assignments\Zelda_CLI_game\Enemies")
-from Enemy import Enemy
+from Enemies.Enemy import Enemy
 
 class Hero(Enemy):
     '''Class Level Docstring: Hero Object has six attributes,
@@ -56,10 +55,10 @@ class Hero(Enemy):
     
     def basic_name(self):
         '''Provides name for Hero basic attack.'''
-        return random.choice("vertical slash", "horizontal slash",
+        return random.choice(("vertical slash", "horizontal slash",
         "thrust", "spin attack", "parry attack", "jump attack",
         "mortal blow", "back slice", "helm splitter","great spin",
-        "huricane spin")
+        "huricane spin"))
     
     def defense_attack(self, enemy):
         '''Parry attack that bolsters hero defense
@@ -69,8 +68,8 @@ class Hero(Enemy):
     
     def defense_name(self):
         '''Returns the name for Hero defense attack'''
-        return random.choice("shield parry strike", "weasel artilleru dodge",
-        "straif left", "straif right", "straif back", "shield strike")
+        return random.choice(("shield parry strike", "weasel artilleru dodge",
+        "straif left", "straif right", "straif back", "shield strike"))
     
     def special_attack(self, enemy):
         '''A Powerful attack that does higher amount of damage 

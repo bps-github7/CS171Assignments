@@ -71,10 +71,3 @@ class Chuchu:
 
 if __name__ == "__main__":
     print("Running in standby mode")
-    from Bokoblin import Bokoblin
-    C = Chuchu('Bruce')
-    B = Bokoblin('Larry')
-    C.special_attack(B)
-    C.defense_attack(B)
-    C.basic_attack(B)
-    print(B.get_health())

@@ -10,7 +10,6 @@ The strongest, most dangerous foe
 in the game.
 '''
 from Enemy import Enemy
-from Moblin import Moblin
 
 class Darknut(Enemy):
     '''Class Level Docstring:
@@ -83,7 +82,5 @@ class Darknut(Enemy):
         self.__health = 500
 
 if __name__ == "__main__":
-    M = Moblin("Tyreese Fuglemtroit")
     D = Darknut("Samuel L. Jackson")
-    M.do_damage(40)
-    print(M.get_health())
+    print(D.special_name())
