@@ -1,45 +1,56 @@
-'''
-Ben Sehnert
-start: 8/15/2018
-finish: 8/13/2020
-Darknut class
+"""
+Creator: Ben Sehnert
+Date: 8/28/2020
+Game: Darknut class
+Software: Zelda CLI mini-game
 
 Module Level Docstring: 
 Implements the Darknut-
 The strongest, most dangerous foe
 in the game.
-'''
+"""
+#imports the ABC this object overrides
 from Enemy import Enemy
 
 class Darknut(Enemy):
-    '''Class Level Docstring:
-    to make the foe threatening we gave them 500 HP and
-    methods that assure defense_mode stays active throughout play.
-    '''
+    """Class Level Docstring: 
+    
+    A Subclass of Enemy ABC which implements a powerful foe.
+    
+    __init__(self, name) : constructs a Darknut enemy
+    __str__(self) : return description + name
+    
+    """
     version = 2.0
     def __init__(self,name):
+        """
+    Constructs a Darknut.
+
+    name : str - provides a nickname for the monster.
+        """
         self.__name__ = "Darknut"
         self.name = name
         self.__health = 200
         self.defense_mode = True
 
     def __str__(self):
-        return "a Darknut named {} is attacking ".format(self.name)
+        return "{} named {} is attacking ".format(self.get_description(), self.get_name())
     
     def get_health(self, numeric = False):
-        '''returns a UI friendly health bar or
-        purely numeric value depending on if
-        numeric is overridden in runtime.'''
-        if numeric: return int(self.__health)
-        return "{} / 200".format(self.__health)
-    
+        """returns foes' current health
+        
+        numeric = False - default : return UI oriented string (CHP/HP)
+        numeric = True - returns health of foe, cast to integer
+        """
+        return int(self.__health) if numeric else "{} / 80".format(self.__health) 
+
     def get_name(self):
-        '''returns the name.'''
+        """Returns foe name."""
         return self.name
     
     def get_description(self):
-        '''returns the description'''
-        return "Darknut clad in heavy duty armor\nHe towers over you."
+        """Returns foes description"""
+        return "Darknut clad in armor head to toe."
 
     def basic_attack(self, enemy):
         '''consistent relative to every other enemy attack.'''

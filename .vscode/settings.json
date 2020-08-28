@@ -9,9 +9,9 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        ".",
+        "./Zelda_CLI_game",
         "-p",
-        "*test*.py"
+        "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.nosetestsEnabled": false,

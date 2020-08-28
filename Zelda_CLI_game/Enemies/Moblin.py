@@ -1,38 +1,47 @@
-'''
+"""
+Creator: Ben Sehnert
+Date: 8/28/2020
+Game: Moblin class
+Software: Zelda CLI mini-game
 
+Module Level Docstring: 
+Implements the Moblin-
+second most powerful foe.
+"""
 
-Module Docstring:
-B Sehnert
-8.13.2020
-cs 172 moblin class
-
-
-'''
+#imports the ABC this object overrides
 from Enemy import Enemy
 
 class Moblin(Enemy):
-    '''
-Class Docstring:
-    '''
+    """
+    Class level Docstring:
+
+
+    """
     version = 2.0
 
     def __init__(self,name):
-        '''Constructs a Moblin.'''
+        """
+        Constructs a Moblin
+
+        name : str - provides a nickname
+        """
         self.__name__ = "Moblin"
         self.name = name
         self.__health = 160
         self.defense_mode = True
 
     def __str__(self):
-        return "a Moblin named {} is attacking".format(self.name)
-
+        return "{} named {} is attacking ".format(self.get_description(), self.get_name())
+    
     def get_health(self, numeric = False):
-        '''returns a UI friendly health bar or
-        purely numeric value depending on if
-        numeric is overridden in runtime.'''
-        if numeric: return int(self.__health)
-        return "{} / 160"\
-        .format(self.__health)
+        """returns foes' current health
+        
+        numeric = False - default : return UI oriented string (CHP/HP)
+        numeric = True - returns health of foe, cast to integer
+        """
+        return int(self.__health) if numeric else "{} / 80".format(self.__health) 
+
     
     def get_name(self):#returns name
         return self.name    
