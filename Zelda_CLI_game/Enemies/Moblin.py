@@ -18,8 +18,9 @@ Class Docstring:
 
     def __init__(self,name):
         '''Constructs a Moblin.'''
+        self.__name__ = "Moblin"
         self.name = name
-        self.__health = 300
+        self.__health = 160
         self.defense_mode = True
 
     def __str__(self):
@@ -30,11 +31,11 @@ Class Docstring:
         purely numeric value depending on if
         numeric is overridden in runtime.'''
         if numeric: return int(self.__health)
-        return "{} / 300"\
+        return "{} / 160"\
         .format(self.__health)
     
     def get_name(self):#returns name
-        return " A Moblin named {} is attacking!.format".format(self.name)    
+        return self.name    
     
     def get_description(self):#returns description
         return "A big, ugly moblin with a pointy snout.\n\
@@ -45,13 +46,14 @@ Class Docstring:
         sets d_mode false'''
         #cant defend while using basic attack
         self.defense_mode = False
-        enemy.do_damage(25)
+        enemy.do_damage(20)
     
     def basic_name(self):
         return "Kick"
     
     def defense_attack(self, enemy):#defense attack
         self.defense_mode = True
+        enemy.do_damage(10)
     
     def defense_name(self):#defense name
         return "waves his lantern in defense!"
@@ -66,12 +68,12 @@ Class Docstring:
     
     def do_damage(self, damage):    
         if self.defense_mode:
-            self.__health -= damage // 2
+            self.__health -= damage - 10
         else:
             self.__health -= damage
     
     def reset_health(self):
-        self.__health = 300
+        self.__health = 160
 
 if __name__ == "__main__":
     print("Running in standby mode")

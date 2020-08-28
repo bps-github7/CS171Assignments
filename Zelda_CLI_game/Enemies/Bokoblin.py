@@ -20,6 +20,7 @@ class Bokoblin:
 
 
     def __init__(self,name):
+        self.__name__ = "Bokoblin"
         self.name = name
         self.__health = 120
         self.defense_mode = True

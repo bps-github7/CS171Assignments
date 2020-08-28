@@ -112,17 +112,6 @@ def game_intro():
     print("You look closely and realize it be monsters...")
     return 0
 
-# def navigate(name, maze = Maze(st = rooms[2])):
-#     '''prototype for making move'''
-#     while True:
-#         print(maze.current)
-#         print("\n\navailable moves:")
-#         maze.current.available_moves()
-#         monster = maze.current.opponent
-#         link = Hero(name)
-#         zelda_battle(link, monster)
-#         maze = Maze.make_move(maze, player_input = input("Which direction do you want to go? ").lower())
-
 def main():
     ''''''
     intro()
@@ -156,20 +145,25 @@ def special_hero_move(attacker, defender, attack):
     else:
         bomb(attacker, defender)
 
-def attack(attacker, defender, attack = ["basic", "defense", "special"]):
+def attack(attacker,
+defender, attack = ["basic", "defense", "special"]):
     #returns error code if attack is invalid attack name
-    if attack not in ("basic", "defense","special", "arrow", "elixer"): return 0
+    if attack not in ("basic", "defense","special", "arrow", "elixer"):
+        return 0
     #monsters don't have these special moves...
-    if isinstance(attacker, (Chuchu, Bokoblin, Moblin, Darknut)) and attack in ("arrow", "elixer"): return 0
+    if isinstance(attacker, (Chuchu, Bokoblin, Moblin, Darknut))\
+    and attack in ("arrow", "elixer"): return 0
     #these are special moves only the player can use.
     if isinstance(attacker, Hero): 
         #setting actors tuple ensures that user prompt has correct grammer
         actors = ("you","opponent")
-        if attack not in ("basic", "defense"): return special_hero_move(attacker, defender, attack)
+        if attack not in ("basic", "defense"): 
+            return special_hero_move(attacker, defender, attack)
     #not sure if u need this actors thing since moving health bar display out of here...
     else: actors = ("opponent","you")
     eval("attacker.{}_attack(defender)".format(attack))
-    print("{} used {}".format(actors[0], eval("attacker.{}_name()".format(attack))))
+    print("{} used {}".format(actors[0], 
+    eval("attacker.{}_name()".format(attack))))
     return 1
 
 def player_move(link, enemy):
@@ -187,7 +181,7 @@ def player_move(link, enemy):
     4 : "arrow",
     5 : "elixer",
     6 : "sys.exit(0)" }
-    validate(link, enemy, choices, moves)
+    return validate(link, enemy, choices, moves)
     # choice = validate(moves)
     # if choice:
     #     return attack(link, enemy, choices[int(choice)])
@@ -227,7 +221,7 @@ def monster_move(link, monster):
 def player_turn(link, monster):
     player_move(link, monster)
     if monster.get_health(numeric = True) <= 0:
-        print("you defeated {}".format(monster.get_name()))
+        print("you defeated {} the {}".format(monster.get_name(), monster.__name__))
         print("good work.")
         return True
     print("opponent: {} Health points remaining".format(monster.get_health()))
@@ -241,13 +235,10 @@ def monster_turn(link, monster):
     print("you: {} health points remaining".format(link.get_health()))
 
 def zelda_battle(link, monster):
-    # reset both opponents health
-    # # suspect there is a neater way to do this via tuple unpacking...
     starting_health(link, monster)
-    # print(link.get_health())
-    #itd be cool if this condition worked. but it doesnt look like it will
-    while ((link.get_health(numeric = True) > 0) and (monster.get_health(numeric = True) > 0)):
+    while (link.get_health(numeric = True) > 0):
         winner = player_turn(link, monster)
+        #we only care about the return value if player wins.
         if winner: return True
         monster_turn(link, monster)
         

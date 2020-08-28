@@ -17,6 +17,7 @@ class Chuchu:
     version = 2.0
 
     def __init__(self,name):
+        self.__name__ = "Chuchu"
         self.name = name
         self.__health = 80
         self.defense_mode = True

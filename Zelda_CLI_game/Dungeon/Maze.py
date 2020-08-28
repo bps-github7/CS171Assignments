@@ -2,7 +2,12 @@
 Module Level Docstring:
 Implements 
 '''
+import sys
+sys.path.insert(0, "C:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game")
+
 from Room import Room
+#from main import zelda_battle, create_player
+import main
 
 class Maze:
     '''Class Level Docstring:'''
@@ -123,13 +128,17 @@ def navigate(maze = Maze(st = rooms[2])):
     may need to reconfigure this, so that it returns something
     otherwise, it might be hard to reach inside and fight monster
     lot of syntax sugar'''
+    link = main.create_player()
     while True:
         print(maze.current)
         print("\n\navailable moves:")
         maze.current.available_moves()
+        monster = maze.current.enemy
         maze = make_move(maze, player_input = input("Which direction do you want to go? ").lower())
+        main.zelda_battle(Link, monster)
 
-def main():
+
+def test():
     create_maze()
     navigate()
 
@@ -137,4 +146,4 @@ def main():
 
 if __name__ == "__main__":
     print("running in standby mode")
-    main()
+    test()
