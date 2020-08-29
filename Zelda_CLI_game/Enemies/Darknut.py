@@ -41,7 +41,7 @@ class Darknut(Enemy):
     name : str - provides a nickname for the monster.
         """
         self.name = name
-        self.__health = 200
+        self.__health = 400
         self.defense_mode = True
 
     def __str__(self):
@@ -53,7 +53,7 @@ class Darknut(Enemy):
         numeric = False - default : return UI oriented string (CHP/HP).
         numeric = True - returns health of foe, cast to integer.
         """
-        return int(self.__health) if numeric else "{} / 80".format(self.__health) 
+        return int(self.__health) if numeric else "{} / 400".format(self.__health) 
 
     def get_name(self):
         """Returns foe name."""
@@ -119,7 +119,7 @@ class Darknut(Enemy):
     
     def reset_health(self):
         """Applies full recovery- returning health to max."""
-        self.__health = 200
+        self.__health = 400
 
 if __name__ == "__main__":
     print("{} class: running in standby mode".format(Darknut.__name__))

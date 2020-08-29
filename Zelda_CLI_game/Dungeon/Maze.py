@@ -7,7 +7,7 @@ sys.path.insert(0, "C:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game")
 
 from Room import Room
 #from main import zelda_battle, create_player
-import main
+# from main import zelda_battle
 
 class Maze:
     '''Class Level Docstring:'''
@@ -122,25 +122,25 @@ def make_move(maze, player_input):
     # else returns the same maze (and current room) that was passed in.
     return maze
 
-def navigate(maze = Maze(st = rooms[2])):
-    '''Handles the mechanism of trabeling
-    from room to room. using a while loop
-    may need to reconfigure this, so that it returns something
-    otherwise, it might be hard to reach inside and fight monster
-    lot of syntax sugar'''
-    link = main.create_player()
-    while True:
-        print(maze.current)
-        print("\n\navailable moves:")
-        maze.current.available_moves()
-        monster = maze.current.enemy
-        maze = make_move(maze, player_input = input("Which direction do you want to go? ").lower())
-        main.zelda_battle(Link, monster)
+# def navigate(maze = Maze(st = rooms[2])):
+#     '''Handles the mechanism of trabeling
+#     from room to room. using a while loop
+#     may need to reconfigure this, so that it returns something
+#     otherwise, it might be hard to reach inside and fight monster
+#     lot of syntax sugar'''
+#     link = main.create_player()
+#     while True:
+#         print(maze.current)
+#         print("\n\navailable moves:")
+#         maze.current.available_moves()
+#         monster = maze.current.enemy
+#         maze = make_move(maze, player_input = input("Which direction do you want to go? ").lower())
+#         main.zelda_battle(Link, monster)
 
 
 def test():
     create_maze()
-    navigate()
+    # navigate()
 
 # main()
 

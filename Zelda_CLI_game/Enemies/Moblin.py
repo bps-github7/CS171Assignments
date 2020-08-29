@@ -12,6 +12,7 @@ a large pig-like beast that carries a lantern and large spear.
 
 #imports the ABC this object overrides
 from Enemy import Enemy
+import random
 
 class Moblin(Enemy):
     """Class Level Docstring: 
@@ -43,7 +44,7 @@ class Moblin(Enemy):
         """
         self.__name__ = "Moblin"
         self.name = name
-        self.__health = 160
+        self.__health = 300
         self.defense_mode = True
 
     def __str__(self):
@@ -55,7 +56,7 @@ class Moblin(Enemy):
         numeric = False - default : return UI oriented string (CHP/HP)
         numeric = True - returns health of foe, cast to integer
         """
-        return int(self.__health) if numeric else "{} / 80".format(self.__health) 
+        return int(self.__health) if numeric else "{} / 300".format(self.__health) 
 
     
     def get_name(self):
@@ -108,13 +109,13 @@ class Moblin(Enemy):
     def do_damage(self, damage):
         """Private method for dealing damage to self."""    
         if self.defense_mode:
-            self.__health -= damage - 10
+            self.__health -= damage // 2
         else:
             self.__health -= damage
     
     def reset_health(self):
         """Applies full recovery - returning health to maximum."""
-        self.__health = 160
+        self.__health = 300
 
 if __name__ == "__main__":
     print("{} class: running in standby mode".format(Moblin.__name__))

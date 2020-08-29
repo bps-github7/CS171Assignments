@@ -51,7 +51,7 @@ class Hero(Enemy):
     def basic_attack(self, enemy):
         '''Offensive attack that leaves Hero vulnerable.'''
         self.defense_mode = False
-        enemy.do_damage(random.randint(20, 70))
+        enemy.do_damage(random.randint(40, 70))
     
     def basic_name(self):
         '''Provides name for Hero basic attack.'''
@@ -64,7 +64,7 @@ class Hero(Enemy):
         '''Parry attack that bolsters hero defense
         while also doing small amount of damage to enemy.'''        
         self.defense_mode = True
-        enemy.do_damage(20)
+        enemy.do_damage(25)
     
     def defense_name(self):
         '''Returns the name for Hero defense attack'''
@@ -73,18 +73,18 @@ class Hero(Enemy):
     
     def special_attack(self, enemy):
         '''A Powerful attack that does higher amount of damage 
-    and also swaps defense mode. If defense mode is true,
+    and also swaps defense mode. If defense mode is true
     does the standard amount of damage. If false, does 
     greater damage but also hurts the Hero.
         '''
         if self.bombs:
             if self.defense_mode:
                 self.defense_mode = False
-                enemy.do_damage(75)
+                enemy.do_damage(55)
                 return "The bomb had a direct Hit.\nYour enemy recoils"
             else:
                 self.defense_mode = True
-                enemy.do_damage(110)
+                enemy.do_damage(75)
                 self.__health -= 20
                 return "The bomb was very powerful.\n\
             \r\rYour enemy was badly injured,\n\

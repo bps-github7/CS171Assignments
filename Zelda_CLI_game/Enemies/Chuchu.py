@@ -43,7 +43,7 @@ class Chuchu(Enemy):
     name : str - Gives the chuchu a nickname.
         """
         self.name = name
-        self.__health = 80
+        self.__health = 200
         self.defense_mode = True
 
     def __str__(self): 
@@ -106,7 +106,7 @@ class Chuchu(Enemy):
     
     def reset_health(self):
         """Applies full recovery- health returned to max."""
-        self.__health = 80
+        self.__health = 200
 
 if __name__ == "__main__":
     print("{} class: running in standby mode.".format(Chuchu.__name__))

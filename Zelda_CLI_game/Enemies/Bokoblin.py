@@ -43,7 +43,7 @@ class Bokoblin:
         name : str - provides foe with nickname.
         """
         self.name = name
-        self.__health = 120
+        self.__health = 250
         self.defense_mode = True
 
     def __str__(self):
@@ -55,7 +55,7 @@ class Bokoblin:
         numeric = False - default : return UI oriented string (CHP/HP)
         numeric = True - returns health of foe, cast to integer
         """
-        return int(self.__health) if numeric else "{} / 80".format(self.__health) 
+        return int(self.__health) if numeric else "{} / 250".format(self.__health) 
 
 
     def get_name(self):
@@ -111,7 +111,7 @@ class Bokoblin:
     
     def reset_health(self):
         """Applies full recovery - returns health to maximum."""
-        self.__health = 120
+        self.__health = 250
 
 if __name__ == "__main__":
     print("{} class: running in standby mode".format(Bokoblin.__name__))
