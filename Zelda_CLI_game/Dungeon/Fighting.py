@@ -8,6 +8,34 @@ from Bokoblin import Bokoblin
 from Darknut import Darknut
 from Hero import Hero
 
+#move this in here because it gets called at end of battle
+def game_over():
+    '''prints game over- shown if user dies in battle'''
+    print('''
+          _             _                 _   _        _               _     _          _      _            _      
+        /\ \          / /\              /\_\/\_\ _   /\ \            /\ \  /\ \    _ / /\    /\ \         /\ \    
+       /  \ \        / /  \            / / / / //\_\/  \ \          /  \ \ \ \ \  /_/ / /   /  \ \       /  \ \   
+      / /\ \_\      / / /\ \          /\ \/ \ \/ / / /\ \ \        / /\ \ \ \ \ \ \___\/   / /\ \ \     / /\ \ \  
+     / / /\/_/     / / /\ \ \        /  \____\__/ / / /\ \_\      / / /\ \ \/ / /  \ \ \  / / /\ \_\   / / /\ \_\ 
+    / / / ______  / / /  \ \ \      / /\/________/ /_/_ \/_/     / / /  \ \_\ \ \   \_\ \/ /_/_ \/_/  / / /_/ / / 
+   / / / /\_____\/ / /___/ /\ \    / / /\/_// / / /____/\       / / /   / / /\ \ \  / / / /____/\    / / /__\/ /  
+  / / /  \/____ / / /_____/ /\ \  / / /    / / / /\____\/      / / /   / / /  \ \ \/ / / /\____\/   / / /_____/   
+ / / /_____/ / / /_________/\ \ \/ / /    / / / / /______     / / /___/ / /    \ \ \/ / / /______  / / /\ \ \     
+/ / /______\/ / / /_       __\ \_\/_/    / / / / /_______\   / / /____\/ /      \ \  / / /_______\/ / /  \ \ \    
+\/___________/\_\___\_    /____/_/       \/_/\/__________/   \/_________/ _      \_\/\/__________/\/_/    \_\/    
+/\ \     /\_\       /\ \  /\_\                   /\ \         /\ \       /\ \      /\ \                           
+\ \ \   / / /      /  \ \/ / /         _        /  \ \____    \ \ \     /  \ \    /  \ \____                      
+ \ \ \_/ / /      / /\ \ \ \ \__      /\_\     / /\ \_____\   /\ \_\   / /\ \ \  / /\ \_____\                     
+  \ \___/ /      / / /\ \ \ \___\    / / /    / / /\/___  /  / /\/_/  / / /\ \_\/ / /\/___  /                     
+   \ \ \_/      / / /  \ \_\__  /   / / /    / / /   / / /  / / /    / /_/_ \/_/ / /   / / /                      
+    \ \ \      / / /   / / / / /   / / /    / / /   / / /  / / /    / /____/\ / / /   / / /                       
+     \ \ \    / / /   / / / / /   / / /    / / /   / / /  / / /    / /\____\// / /   / / /                        
+      \ \ \  / / /___/ / / / /___/ / /     \ \ \__/ / /__/ / /__  / / /______\ \ \__/ / /                         
+       \ \_\/ / /____\/ / / /____\/ /       \ \___\/ /\__\/_/___\/ / /_______\\ \___\/ /                          
+        \/_/\/_________/\/_________/         \/_____/\/_________/\/__________/ \/_____/                           
+                                                                                        ''')
+
+
 def monster_move(link, monster):
     '''picks a move from a set of 3
     invokes it on link and prints feedback to user.'''
@@ -47,7 +75,8 @@ def elixer(attacker):
 def arrow(attacker, defender):
     attacker.use_arrow(defender)
     print(attacker.arrow_name())
-    print("Your foe has {} health points remaining".format(defender.get_health()))
+    if defender.get_health() >= 0:
+        print("Your foe has {} health points remaining".format(defender.get_health()))
     print("you have {} arrows left".format(attacker.arrow_count()))
     return 1
 
@@ -86,24 +115,14 @@ defender, attack = ["basic", "defense", "special"]):
     return 1
 
 def player_move(link, enemy):
-    moves = {
-    1 : '1) use master sword',
-    2 : '2) use shield to block enemy attack',
-    3 : '3) throw a bomb',
-    4 : '4) shoot an arrow',
-    5 : '5) drink an elixer',
-    6 : '6) quit'}
-    choices = {
-    1 : 'basic',
-    2 : 'defense',
-    3 : "special",
-    4 : "arrow",
-    5 : "elixer",
-    6 : "sys.exit(0)" }
+    moves = { 1 : '1) use master sword',
+    2 : '2) use shield to block enemy move',
+    3 : '3) throw a bomb', 4 : '4) shoot an arrow',
+    5 : '5) drink an elixer', 6 : '6) quit'}
+    choices = { 1 : 'basic', 2 : 'defense',
+    3 : "special", 4 : "arrow",
+    5 : "elixer", 6 : "sys.exit(0)" }
     return validate(link, enemy, choices, moves)
-    # choice = validate(moves)
-    # if choice:
-    #     return attack(link, enemy, choices[int(choice)])
     
 def validate(link, enemy, choices, moves):
     while True:

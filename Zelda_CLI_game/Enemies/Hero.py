@@ -62,9 +62,9 @@ class Hero(Enemy):
     
     def defense_attack(self, enemy):
         '''Parry attack that bolsters hero defense
-        while also doing small amount of damage to enemy.'''        
+        while also doing very small amount of damage to enemy.'''        
         self.defense_mode = True
-        enemy.do_damage(25)
+        enemy.do_damage(random.randint(2,12))
     
     def defense_name(self):
         '''Returns the name for Hero defense attack'''
