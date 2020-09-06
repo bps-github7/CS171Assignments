@@ -9,7 +9,7 @@ creates the playable character in the cmd line game.
 '''
 import random
 import sys
-from Enemies.Enemy import Enemy
+from Enemy import Enemy
 
 class Hero(Enemy):
     '''Class Level Docstring: Hero Object has six attributes,
@@ -115,7 +115,7 @@ class Hero(Enemy):
         '''Replenishes half of the Heros max health point.
     but limited uses, also turns defense mode to false.
         '''
-        self.defense_mode = False
+        self.defense_mode = True
         self.__health + 100
         self.elixers - 1
     
@@ -128,9 +128,12 @@ class Hero(Enemy):
         return "{} / 5".format(self.elixers)
 
     def do_damage(self, damage):
-        '''Blocks attack if defense mode is true'''
+        '''makes opponent attacks much 
+        less effective if defense mode is true.
+        had to change this from a true block because
+        you could spam the defense attack to win'''
         if self.defense_mode:
-            return True
+            self.__health -= (damage // 3)
         else:
             self.__health -= damage
     

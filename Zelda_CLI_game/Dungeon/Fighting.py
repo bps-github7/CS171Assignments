@@ -66,9 +66,11 @@ def zelda_battle(link, monster):
         monster_turn(link, monster)
 
 
+#it seems like elixer isnt working. 
+# that, or enemies attack utterly nullifies the effect of using the elixer.
 def elixer(attacker):
     attacker.elixer()
-    print("{}\n{} elixers remaining".format(attacker.elixer_name(), attacker.elixer_count()))
+    print("{}\n{} elixers remaining".format(attacker.elixers, attacker.elixer_count()))
     print("you now have: {} health points.".format(attacker.get_health()))
     return 1
 

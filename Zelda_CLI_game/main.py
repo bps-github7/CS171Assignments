@@ -8,8 +8,9 @@ import time
 import random
 import sys
 sys.path.insert(0, 'c:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game')
-from Hero import Hero
+
 sys.path.insert(0, 'c:\\Users\\Ben\\VsCode\\CS171Assignments\\Zelda_CLI_game\\Enemies')
+from Hero import Hero
 from Enemies.Bokoblin import  Bokoblin
 from Enemies.Chuchu import Chuchu
 from Enemies.Moblin import Moblin
